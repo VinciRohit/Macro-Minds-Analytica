@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chart.js Zoom on Selected Region</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+	<script>
+		function genData() {
+			var analogData = [];
+			var digitalData = [];
+			var angle = 1980;
+			var limit = 35;
+			for (var x = 0; x <= angle; x += 10) {
+				var y = Math.sin(x * Math.PI / 180) * limit;
+				analogData.push({x, y});
+
+				y = x === 0 ? -limit : x === angle ? limit : y;
+				if (y === limit || y === -limit) {
+					digitalData.push({x, y: y === -limit});
+				}
+			}
+
+			return [analogData, digitalData];
+		}
+
+		function createConfig() {
+			var [analogData, digitalData] = genData();
+			return {
+				data: {
+					datasets: [{
+						// yAxisID: 'yA',
+						label: 'Temperature',
+						type: 'line',
+						fill: false,
+						borderColor: 'rgb(54, 162, 235)',
+						data: analogData
+					}]
+				},
+				options: {
+					responsive: true,
+					title: {
+						display: true,
+						text: 'Chart.js Zoom each scale separately'
+					},
+					scales: {
+						x: {
+							type: 'linear',
+							// offset: true,
+						},
+					},
+					plugins: {
+						zoom: {
+							pan: {
+								enabled: true,
+								mode: 'xy',
+							},
+							zoom: {
+								wheel: {
+									enabled: true,
+								},
+								pinch: {
+									enabled: true,
+								},
+								mode: 'xy',
+								// scaleMode: 'y'
+							}
+						}
+					}
+				}
+			};
+		}
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			var config = createConfig();
+			window.myChart = new window.Chart(ctx, config);
+		};
+	</script>
+</body>
+</html>
