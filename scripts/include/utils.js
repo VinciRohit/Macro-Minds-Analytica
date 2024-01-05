@@ -133,9 +133,9 @@ const Utils = {
             throw error; // Propagate the error
         }
     },
-    async fetchApi(api) {
+    async fetchApi(api, body) {
         try {
-            var response = await fetch(api);
+            var response = await fetch(api, body);
     
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -143,31 +143,38 @@ const Utils = {
     
             var data = await response.json();
             // console.log('First data received: ',data);
-    
-            const pages = data[0].pages
-            var page = data[0].page
-    
-            while(page < pages) {
-                try {
-                    response = await fetch(api+`&page=${page+1}`);
-            
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
+
+            try {
+                const pages = data[0].pages
+                var page = data[0].page
+        
+                while(page < pages) {
+                    try {
+                        response = await fetch(api+`&page=${page+1}`);
+                
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                
+                        datanextpage = await response.json();
+                        // console.log('First data received: ',datanextpage);
+                        
+                        page = datanextpage[0].page;
+                        data[1] = [...data[1],...datanextpage[1]];
+        
+                    } catch (error) {
+                    console.error('Error fetching or parsing data:', page, error);
+                    throw error; // Propagate the error
                     }
-            
-                    datanextpage = await response.json();
-                    // console.log('First data received: ',datanextpage);
-                    
-                    page = datanextpage[0].page;
-                    data[1] = [...data[1],...datanextpage[1]];
-    
-                } catch (error) {
-                console.error('Error fetching or parsing data:', page, error);
-                throw error; // Propagate the error
+        
+                };
+        
+            } catch (error) {
+                console.log(error);
+                // throw error;
             }
     
-            };
-    
+            
             // console.log('First data received: ',data);
             
             return data;

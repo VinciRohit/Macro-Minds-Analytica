@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Your Market Insights</title>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script> -->
@@ -49,11 +52,11 @@
             <canvas id="MacroEconomicAnalysis"></canvas>
 
             <div>
-                <select class="button3" id="topics" onchange="filterByTopic()">
+                <select class="button2" id="topics" onchange="filterByTopic()">
                     <option value="">Select Topic</option>
                 </select>
 
-                <select class="button3" id="indicators">
+                <select class="button2" id="indicators">
                     <option value="">Select Indicator</option>
                 </select>
             </div>
@@ -61,6 +64,19 @@
 
         <script src="scripts/worldbankdata.js"></script>
         <script src="scripts/worldbankdataindicators.js"></script>
+
+        <div id="MacroEconomicAnalysisContainer2" style="width:80%; margin:auto;">
+            <h3>OECD Data</h3>
+            <canvas id="MacroEconomicAnalysis2"></canvas>
+
+            <div class="dropdown position-static" id="dynamicDropdown">
+                <button id="SelectData" class="button2 btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select Data
+                    <span class="caret"></span></button>
+            </div>
+        </div>
+
+        <script src="scripts/oecddata.js"></script>
+        <script src="scripts/oecddataindicators.js"></script>
 
 
         <div id="CorrelationContainer" style="width:80%; margin:auto;">

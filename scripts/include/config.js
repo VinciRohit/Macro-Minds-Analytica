@@ -165,3 +165,29 @@ var options = {
         }
 	}
 }
+
+
+let categorySchemes = [
+    {
+        agencyID:'YFinance',
+        id:'YFinance',
+        name:'YFinance',
+        categories: [
+            {
+                id: 'Index',
+                name: 'Market Indices',
+                categories: [
+                    {
+                        id:'SNP500',
+                        name:'S&P 500'
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        agencyID:'OECD',
+        id:'OECD',
+        name:'OECD'
+    }
+]

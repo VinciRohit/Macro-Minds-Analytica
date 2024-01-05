@@ -28,7 +28,7 @@ header h1 {
 }
 
 .features h3 {
-    color: #fff;
+    color: #3498db;
 }
 
 .features ul {
@@ -75,17 +75,16 @@ header h1 {
     display: inline-block;
     padding: 10px 20px;
     margin: 10px;
+    /* background-color: #34495e; */
     color: #007BFF;
     text-decoration: none;
     border-radius: 5px;
     cursor: pointer;
-    border: none;
+    border: 1px solid lightgray;
 }
 
 .button3 {
     display: inline-block;
-    /* align-items: center;
-    justify-content: center; */
     padding: 10px 20px;
     margin: 10px;
     /* background-color: #34495e; */
@@ -93,7 +92,6 @@ header h1 {
     text-decoration: none;
     border-radius: 5px;
     cursor: pointer;
-    border: none;
 }
 
 #comments {
@@ -144,4 +142,20 @@ iframe {
     color: #fff;
     text-align: center;
     padding: 20px 0;
+}
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+  }
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
 }
