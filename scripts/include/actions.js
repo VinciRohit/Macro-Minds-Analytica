@@ -126,7 +126,7 @@ const WorldBankDataButtonactions = [
             } else {
                 var api = `https://api.worldbank.org/v2/country/xd/indicator/${indicator.value}?format=json`;
                 try {
-                    const response = await Utils.fetchApi(api);
+                    const response = await Utils.fetchJsonApi(api);
                     data = Utils.orderByDate(response[1]).map(entry => ({ x: window.luxon.DateTime.fromObject({year: entry.date, month: 12}).ts, y: entry.value }));
                 } catch (error) {
                     console.log(error);
@@ -173,4 +173,90 @@ const WorldBankDataButtonactions = [
 
 function GetWorldBankDataButtonactions() {
     return WorldBankDataButtonactions
+}
+
+function GetFinancialChartButtonactions() {
+    return FinancialChartButtonactions
+}
+
+// World Bank Data Interactivity actions
+const MacroDataButtonactions = [
+    {
+        name: 'Add Indicator',
+        async handler(chart) {
+            // var topic = document.getElementById('topics');
+            // const selectedTopic = topic.options[topic.selectedIndex];
+            var indicator = document.getElementById('indicators2');
+            const selectedOption = indicator.options[indicator.selectedIndex];
+            const label = selectedOption.textContent;
+            console.log(`selected option Id is ${selectedOption.value}`);
+            let data;
+
+            if (selectedOption.mainAgencyID === 'YFinance') {
+                // var filename = `python/data/${indicator.value}_normalised_max.json`;
+                let indicator = selectedOption.value + (selectedOption.dataflowAttributes.normalised? '_normalised':'') + (selectedOption.dataflowAttributes.period? `_${selectedOption.dataflowAttributes.period}`:'')
+                var filename = selectedOption.source;
+                filename = filename.replace('[[indicator]]',indicator);
+                var response = await Utils.fetchFile(filename);
+                data = Object.values(response).map(entry => ({ 
+                    x: window.luxon.DateTime.fromObject({
+                                                            year: Utils.DateTime.fromMillis(entry.x).c.year
+                                                            , month: Utils.DateTime.fromMillis(entry.x).c.month
+                                                        })
+                    , y: entry.c 
+                }));
+            } else if (selectedOption.mainAgencyID === 'OECD') {
+                var api = selectedOption.source;
+                let agencyID = selectedOption.dataflowAttributes.agencyID? selectedOption.dataflowAttributes.agencyID:'all';
+                let indicator = selectedOption.value;
+                api = api.replace('[[agencyID]]',agencyID);
+                api = api.replace('[[indicator]]',indicator);
+                try {
+                    const response = await Utils.fetchJsonApi(api);
+                    data = Utils.orderByDate(response[1]).map(entry => ({ x: window.luxon.DateTime.fromObject({year: entry.date, month: 12}).ts, y: entry.value }));
+                } catch (error) {
+                    console.log(error);
+                    throw error;
+                }
+            };
+            
+            // data = Utils.normalizeArray(data, 'y', minValueMacro, maxValueMacro);
+
+            Utils.updateChart(data, label, chart);
+        },
+    },
+    {
+        name: 'Remove Selected Indicator',
+        async handler(chart) {
+            var indicator = document.getElementById('indicators');
+            const selectedOption = indicator.options[indicator.selectedIndex];
+            chart.data.datasets = chart.data.datasets.filter(dataset => dataset.label !== selectedOption.textContent);
+            chart.update();
+        },
+    },
+    {
+        name: 'Remove Last Indicator',
+        async handler(chart) {
+            chart.data.datasets.pop();
+            chart.update();
+        },
+    },
+    {
+        name: 'Remove All Indicators',
+        async handler(chart) {
+            chart.data.datasets = [];
+            chart.update();
+        },
+    },
+    {
+        name: 'Reset Zoom',
+        async handler(chart) {
+            chart.resetZoom(mode = 'none');
+            chart.update();
+        },
+    }
+]
+
+function GetMacroDataButtonactions() {
+    return MacroDataButtonactions
 }

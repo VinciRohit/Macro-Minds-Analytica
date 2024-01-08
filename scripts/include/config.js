@@ -169,25 +169,36 @@ var options = {
 
 let categorySchemes = [
     {
-        agencyID:'YFinance',
+        mainAgencyID:'YFinance',
         id:'YFinance',
         name:'YFinance',
+        sourcetype: 'file',
+        source: 'python/data/[[indicator]].json',
+        datatype: 'json',
         categories: [
             {
                 id: 'Index',
                 name: 'Market Indices',
-                categories: [
+                dataflows: [
                     {
                         id:'SNP500',
-                        name:'S&P 500'
+                        name:'S&P 500',
+                        attributes: {
+                            period: 'max',
+                            interval: '1mo',
+                            normalised: true
+                        }
                     }
                 ]
             }
         ]
     },
     {
-        agencyID:'OECD',
+        mainAgencyID:'OECD',
         id:'OECD',
-        name:'OECD'
+        name:'OECD',
+        sourcetype: 'api',
+        source: 'https://sdmx.oecd.org/public/rest/data/[[agencyID]],[[indicator]],1.0/USA+GBR.M.HICP.CPI.PA._T.N.GY?startPeriod=2022-12&dimensionAtObservation=AllDimensions&format=jsondata',
+        datatype: 'json',
     }
 ]

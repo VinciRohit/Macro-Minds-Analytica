@@ -2,11 +2,11 @@ document.addEventListener('DOMContentLoaded', fetchOECDDataIndicators);
 
 async function fetchOECDDataIndicators() {
     // Add index data
-    const oecdCategoryScheme = categorySchemes.find(categoryScheme => categoryScheme.agencyID === 'OECD');
+    const oecdCategoryScheme = categorySchemes.find(categoryScheme => categoryScheme.mainAgencyID === 'OECD');
     
     try {
-        api = 'https://sdmx.oecd.org/public/rest/dataflow/OECD.SDD.TPS/DSD_PRICES@DF_PRICES_HICP/1.0?references=all';
-        const jsonData = await Utils.fetchApi(api, {
+        api = 'https://sdmx.oecd.org/public/rest/categoryscheme';
+        const jsonData = await Utils.fetchJsonApi(api, {
             method: 'GET',
             headers: {
                 'Accept': 'application/vnd.sdmx.structure+json; charset=utf-8; version=1.0'
@@ -30,7 +30,7 @@ async function fetchOECDDataIndicators() {
                 }
             }
         }
-
+        
         nestedCategories(jsonData.data.categorySchemes[0].categories, oecdCategoryScheme.categories)
 
         // Function to create the dropdown from JSON
@@ -73,10 +73,17 @@ async function fetchOECDDataIndicators() {
         });
 
         $(document).on("click", '.dropdown-submenu a.button3', function (e) {
-            console.log($(this));
-            console.log($(this)[0].id);
             const SelectedData = document.getElementById('SelectData');
-            SelectedData.innerHTML = $(this)[0].name + ' <span class="caret"></span>';
+            SelectedData.innerHTML = $(this)[0].textContent + ' <span class="caret"></span>';
+
+            var filterid = [];
+            filterid.push($(this)[0].id);
+            for (let parent of $(this).parents(".dropdown-submenu")) {
+                filterid.push(parent.children[0].id);
+            }
+
+            // console.log(filterid.reverse());
+            filterByTopic2(filterid.reverse());
         });
 
 
@@ -84,4 +91,63 @@ async function fetchOECDDataIndicators() {
     } catch (error) {
         console.error('Error fetching data:', error);
     }
+}
+
+
+function filterByTopic2(selectedTopics) {
+    const indicatorsDropdown = document.getElementById('indicators2');
+    let indicators = indicatorsDropdown.querySelectorAll('option');
+    const AgencyScheme = categorySchemes.find(categoryScheme => categoryScheme.mainAgencyID === selectedTopics[0]);
+
+    let dataflows = [];
+    let scheme = categorySchemes.find(categoryScheme => categoryScheme.mainAgencyID === selectedTopics[0]);
+
+    for (let i = 1; i < selectedTopics.length; i++) {
+        scheme = scheme.categories.find(categoryScheme => categoryScheme.id === selectedTopics[i]);
+        if (i === selectedTopics.length - 1) {
+            dataflows = scheme.dataflows;
+            // console.log(dataflows);
+            break;
+        }
+    }
+
+    let optionsSet = [];
+
+    for (let opt of indicators) {
+        if (opt.value != "") {
+            opt.style.display = 'none';
+        }
+    }
+
+    dataflows.forEach(indicator => {
+
+        let optionAlreadyPresent = null;
+
+        for (let opt of indicators) {
+            if (opt.value === indicator.id) {
+                optionAlreadyPresent = opt;
+            }
+        }
+
+        if (optionAlreadyPresent) {
+            optionAlreadyPresent.style.display = 'block';
+            optionsSet.push(optionAlreadyPresent);
+        } else {
+            const option = document.createElement('option');
+            option.sourcetype = AgencyScheme.sourcetype;
+            option.source = AgencyScheme.source;
+            option.datatype = AgencyScheme.datatype;
+            option.mainAgencyID = AgencyScheme.mainAgencyID;
+            option.dataflowAttributes = indicator.attributes;
+            option.value = indicator.id;
+            option.textContent = `${indicator.name}`;
+            indicatorsDropdown.appendChild(option);
+            option.style.display = 'block';
+            optionsSet.push(option);
+        }
+
+    })
+
+    optionsSet[0].selected = true;
+
 }

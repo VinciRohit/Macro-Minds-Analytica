@@ -133,7 +133,7 @@ const Utils = {
             throw error; // Propagate the error
         }
     },
-    async fetchApi(api, body) {
+    async fetchJsonApi(api, body) {
         try {
             var response = await fetch(api, body);
     

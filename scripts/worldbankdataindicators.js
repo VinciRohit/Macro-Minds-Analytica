@@ -7,7 +7,7 @@ async function fetchWorldBankDataIndicators() {
     
     try {
         api = 'https://api.worldbank.org/v2/indicators?format=json&source=2';
-        const jsonData = await Utils.fetchApi(api);
+        const jsonData = await Utils.fetchJsonApi(api);
         jsonArray = jsonArray.concat(jsonData[1]);
 
         const topicsDropdown = document.getElementById('topics');

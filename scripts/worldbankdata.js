@@ -34,7 +34,7 @@ async function initializeWorldBankChart() {
 	// data = Utils.orderByDate(data).map(entry => ({ x: window.luxon.DateTime.fromObject({year: entry.date, month: 12}).ts, y: entry.value }));
 
 	// try {
-	// 	const response = await Utils.fetchApi(api);
+	// 	const response = await Utils.fetchJsonApi(api);
 	// 	data = Utils.orderByDate(response[1]).map(entry => ({ x: window.luxon.DateTime.fromObject({year: entry.date, month: 12}).ts, y: entry.value }));
 	// } catch (error) {
 	// 	throw error;
