@@ -6,24 +6,12 @@ async function fetchOECDDataCategorisations() {
     
     try {
         api = 'https://sdmx.oecd.org/public/rest/categorisation';
-        const response = await fetch(api, {
+        const xmlDoc = await Utils.fetchXmlApi(api, {
             method: 'GET',
             headers: {
                 'Accept': 'application/vnd.sdmx.structure+xml; charset=utf-8; version=2.1'
             }
         });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        
-        const xmlString = await response.text();
-
-        // console.log(xmlString);
-
-        // Parse the XML string
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlString, 'application/xml');
 
         const categorisations = xmlDoc.getElementsByTagName("structure:Categorisation");
 

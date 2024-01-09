@@ -127,7 +127,7 @@ const WorldBankDataButtonactions = [
                 var api = `https://api.worldbank.org/v2/country/xd/indicator/${indicator.value}?format=json`;
                 try {
                     const response = await Utils.fetchJsonApi(api);
-                    data = Utils.orderByDate(response[1]).map(entry => ({ x: window.luxon.DateTime.fromObject({year: entry.date, month: 12}).ts, y: entry.value }));
+                    data = Utils.orderByDate(response[1]).map(entry => ({ x: window.luxon.DateTime.fromObject({year: entry.date, month: 12}), y: entry.value }));
                 } catch (error) {
                     console.log(error);
                     throw error;
@@ -212,17 +212,23 @@ const MacroDataButtonactions = [
                 api = api.replace('[[agencyID]]',agencyID);
                 api = api.replace('[[indicator]]',indicator);
                 try {
-                    const response = await Utils.fetchJsonApi(api);
-                    data = Utils.orderByDate(response[1]).map(entry => ({ x: window.luxon.DateTime.fromObject({year: entry.date, month: 12}).ts, y: entry.value }));
+                    const response = await Utils.fetchXmlApi(api);
+                    const observations = response.documentElement.getElementsByTagName("generic:Obs");
+                    data = Array.from(observations).map(obs => ({
+                        x: window.luxon.DateTime.fromFormat(
+                            Array.from(obs.getElementsByTagName("generic:Value")).find(tag => tag.id === 'TIME_PERIOD').getAttribute("value"),
+                            "yyyy-MM"),
+                        y: obs.getElementsByTagName("generic:ObsValue")[0].getAttribute("value")
+                    }));
+                    // data = Utils.orderByDate(response[1]).map(entry => ({ x: window.luxon.DateTime.fromObject({year: entry.date, month: 12}).ts, y: entry.value }));
                 } catch (error) {
-                    console.log(error);
                     throw error;
                 }
             };
             
             // data = Utils.normalizeArray(data, 'y', minValueMacro, maxValueMacro);
 
-            Utils.updateChart(data, label, chart);
+            Utils.updateChart(data, label, chart, `y${chart.data.datasets.length}`);
         },
     },
     {

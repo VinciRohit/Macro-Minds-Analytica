@@ -170,14 +170,33 @@ const Utils = {
                 };
         
             } catch (error) {
-                console.log(error);
+                console.log(`Could not load other pages for the api query: ${api}`);
                 // throw error;
             }
-    
-            
-            // console.log('First data received: ',data);
             
             return data;
+        } catch (error) {
+            console.error('Error fetching or parsing data:', error);
+            throw error; // Propagate the error
+        }
+    },
+    async fetchXmlApi(api, body) {
+        try {
+            var response = await fetch(api, body);
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+    
+            const xmlString = await response.text();
+
+            // console.log(xmlString);
+
+            // Parse the XML string
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, 'application/xml');
+
+            return xmlDoc;
         } catch (error) {
             console.error('Error fetching or parsing data:', error);
             throw error; // Propagate the error
@@ -191,7 +210,7 @@ const Utils = {
         });
         return data
     },
-    async updateChart (data, label, myInteractiveLineChart) {
+    async updateChart (data, label, myInteractiveLineChart, yAxisID) {
         myInteractiveLineChart.data.datasets.forEach(dataset => {
             if (dataset.label === label) {
                 throw 'indicator already in chart';
@@ -199,14 +218,20 @@ const Utils = {
         });
         
         const dsColor = Utils.namedColor(myInteractiveLineChart.data.datasets.length);
-    
+        
         const dataset = {
             label: label,
             data: data,
+            // yAxisID: label, // Associate with the first y-axis
             borderColor: dsColor,
             backgroundColor: Utils.gradientize(myInteractiveLineChart, dsColor, 1),
             fill: true
         };
+
+        if (yAxisID) {
+            dataset.yAxisID = yAxisID;
+        }
+        
     
         if (myInteractiveLineChart.config._config.type === 'candlestick') {
             myInteractiveLineChart.config._config.type = 'line';

@@ -198,7 +198,7 @@ let categorySchemes = [
         id:'OECD',
         name:'OECD',
         sourcetype: 'api',
-        source: 'https://sdmx.oecd.org/public/rest/data/[[agencyID]],[[indicator]],1.0/USA+GBR.M.HICP.CPI.PA._T.N.GY?startPeriod=2022-12&dimensionAtObservation=AllDimensions&format=jsondata',
+        source: 'https://sdmx.oecd.org/public/rest/data/[[agencyID]],[[indicator]],1.0/USA.M.HICP.CPI.PA._T.N.GY?startPeriod=2007-12&dimensionAtObservation=AllDimensions',
         datatype: 'json',
     }
 ]
