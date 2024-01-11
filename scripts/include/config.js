@@ -174,6 +174,7 @@ let categorySchemes = [
         name:'YFinance',
         sourcetype: 'file',
         source: 'python/data/[[indicator]].json',
+        structure: null,
         datatype: 'json',
         categories: [
             {
@@ -198,7 +199,8 @@ let categorySchemes = [
         id:'OECD',
         name:'OECD',
         sourcetype: 'api',
-        source: 'https://sdmx.oecd.org/public/rest/data/[[agencyID]],[[indicator]],1.0/USA.M.HICP.CPI.PA._T.N.GY?startPeriod=2007-12&dimensionAtObservation=AllDimensions',
+        source: 'https://sdmx.oecd.org/public/rest/data/[[agencyID]],[[indicator]],1.0/USA.M.HICP.CPI.PA._T.N.GY?startPeriod=1980&dimensionAtObservation=AllDimensions',
+        structure: 'https://sdmx.oecd.org/public/rest/dataflow/[[agencyID]]/[[indicator]]/1.0?references=all',
         datatype: 'json',
     }
 ]

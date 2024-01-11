@@ -136,6 +136,7 @@ function filterByTopic2(selectedTopics) {
             const option = document.createElement('option');
             option.sourcetype = AgencyScheme.sourcetype;
             option.source = AgencyScheme.source;
+            option.structure = AgencyScheme.structure;
             option.datatype = AgencyScheme.datatype;
             option.mainAgencyID = AgencyScheme.mainAgencyID;
             option.dataflowAttributes = indicator.attributes;
@@ -148,6 +149,95 @@ function filterByTopic2(selectedTopics) {
 
     })
 
-    optionsSet[0].selected = true;
+    // optionsSet[0].selected = true;
 
+}
+
+
+async function getDimensions() {
+    const indicator = document.getElementById('indicators2');
+    const selectedOption = indicator.options[indicator.selectedIndex];
+    const div = document.getElementById('MacroEconomicAnalysisIndicators2');
+    let data;
+
+    // Remove all previous filters
+    while (div.lastElementChild && (div.lastElementChild.id != 'indicators2')) {
+        div.removeChild(div.lastElementChild)
+    }
+
+    if (selectedOption.mainAgencyID === 'YFinance') {
+    } else if (selectedOption.mainAgencyID === 'OECD') {
+        var datastructure = selectedOption.structure;
+        let agencyID = selectedOption.dataflowAttributes.agencyID? selectedOption.dataflowAttributes.agencyID:'all';
+        let indicator = selectedOption.value;
+        datastructure = datastructure.replace('[[agencyID]]',agencyID);
+        datastructure = datastructure.replace('[[indicator]]',indicator);
+        try {
+            const responseDataStructure = await Utils.fetchXmlApi(datastructure);
+
+            // Get Dimensions
+            const dimensionList = responseDataStructure.documentElement.getElementsByTagName("structure:DimensionList")[0];
+            const dimensions = dimensionList.getElementsByTagName("structure:Dimension");
+            dimensionsArray = Array.from(dimensions).map(dim => {
+                let codes = Array.from(dim.getElementsByTagName("structure:Enumeration")).map(tag => Array.from(tag.children).find(child => child.getAttribute? child.getAttribute('class') === 'Codelist' : false));
+
+                return {
+                dimId: dim.getAttribute("id"),
+                dimPosition: dim.getAttribute("position"),
+                // codeListId: Array.from(Array.from(dim.getElementsByTagName("structure:Enumeration"))[0].getElementsByTagName('Ref')).find(tag => tag.getAttribute('class') === 'Codelist').id
+                codeListId: codes.length? codes[0].id : ''
+                };
+            });
+            dimensionsArray.filter(dim => dim.codeListId); // remove elements where codeListId is blank
+
+            // Get Concepts
+            const StructureConcepts = responseDataStructure.documentElement.getElementsByTagName("structure:Concepts")[0];
+            const Concepts = StructureConcepts.getElementsByTagName("structure:Concept");
+            for (let concept of Concepts) {
+                let dim = dimensionsArray.find(entry => entry.dimId === concept.id);
+                if (dim) {
+                    let conceptNameStructure = Array.from(concept.getElementsByTagName("common:Name")).find(child => child.getAttribute? child.getAttribute('xml:lang') === 'en' : false);
+                    let conceptName = conceptNameStructure? conceptNameStructure.textContent : (Array.from(concept.getElementsByTagName("common:Name")).length? code.getElementsByTagName("common:Name")[0].textContent : '');
+                    dim.dimName = conceptName;
+                }
+            }
+
+            // Get CodeList
+            const StructureCodeLists = responseDataStructure.documentElement.getElementsByTagName("structure:Codelists")[0];
+            const codeLists = StructureCodeLists.getElementsByTagName("structure:Codelist");
+            codesArray = Array.from(codeLists).map(codeList => {
+                return {
+                    codeListId: codeList.id,
+                    codes: Array.from(codeList.getElementsByTagName("structure:Code")).map(code => {
+                        let codeNames = Array.from(code.getElementsByTagName("common:Name")).find(child => child.getAttribute? child.getAttribute('xml:lang') === 'en' : false);
+
+                        return {
+                            codeId: code.getAttribute("id"),
+                            codeName: codeNames? codeNames.textContent : (Array.from(code.getElementsByTagName("common:Name")).length? code.getElementsByTagName("common:Name")[0].textContent : ''),
+                        };
+                    })
+                }
+            });
+            console.log(codesArray);
+
+            
+            // Create html elements
+            for (let dim of dimensionsArray) {
+                let dimSelect = document.createElement('select');
+                dimSelect.classList.add('button2');
+                dimSelect.setAttribute('id', dim.dimId);
+
+                let dimOption = document.createElement('option');
+                dimOption.setAttribute('value', '');
+                dimOption.textContent = `Select ${dim.dimName? dim.dimName : dim.dimId}`;
+
+                dimSelect.appendChild(dimOption);
+                div.appendChild(dimSelect);
+            }
+            
+
+        } catch (error) {
+            throw error;
+        }
+    }
 }

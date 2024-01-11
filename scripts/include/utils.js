@@ -230,6 +230,7 @@ const Utils = {
 
         if (yAxisID) {
             dataset.yAxisID = yAxisID;
+            myInteractiveLineChart.options.scales[yAxisID] = {display:false}
         }
         
     

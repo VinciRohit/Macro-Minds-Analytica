@@ -44,7 +44,7 @@ config = {
           },
           zoom: {
             wheel: {
-              enabled: true,
+              enabled: false,
             },
             pinch: {
               enabled: true,

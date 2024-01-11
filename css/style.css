@@ -106,10 +106,10 @@ header h1 {
     height: 250px;
 }
 
-/* #MacroEconomicAnalysis {
-    background-color: #007BFF;
-    color: #fff;
-} */
+#MacroEconomicAnalysisIndicators2 {
+    background-color: gray;
+    /* color: #fff; */
+}
 
 .textfield {
     display: block;

@@ -73,10 +73,12 @@
                 <button id="SelectData" class="button2 btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select Topic
                     <span class="caret"></span></button>
             </div>
-
-            <select class="button2" id="indicators2">
-                <option value="">Select Indicator</option>
-            </select>
+            
+            <div id="MacroEconomicAnalysisIndicators2">
+                <select class="button2" id="indicators2" onchange="getDimensions()">
+                    <option value="">Select Indicator</option>
+                </select>
+            </div>
         </div>
 
         <script src="scripts/oecddata.js"></script>

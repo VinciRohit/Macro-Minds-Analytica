@@ -207,11 +207,15 @@ const MacroDataButtonactions = [
                 }));
             } else if (selectedOption.mainAgencyID === 'OECD') {
                 var api = selectedOption.source;
+                var datastructure = selectedOption.structure;
                 let agencyID = selectedOption.dataflowAttributes.agencyID? selectedOption.dataflowAttributes.agencyID:'all';
                 let indicator = selectedOption.value;
+                datastructure = datastructure.replace('[[agencyID]]',agencyID);
+                datastructure = datastructure.replace('[[indicator]]',indicator);
                 api = api.replace('[[agencyID]]',agencyID);
                 api = api.replace('[[indicator]]',indicator);
                 try {
+                    // Get Data
                     const response = await Utils.fetchXmlApi(api);
                     const observations = response.documentElement.getElementsByTagName("generic:Obs");
                     data = Array.from(observations).map(obs => ({
