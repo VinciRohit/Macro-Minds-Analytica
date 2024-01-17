@@ -94,6 +94,18 @@ header h1 {
     cursor: pointer;
 }
 
+.button4 {
+    display:block;
+    padding: 10px 20px;
+    margin: 10px;
+    /* background-color: #34495e; */
+    color: #007BFF;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid lightgray;
+}
+
 #comments {
     width: 500px;
     height: 70px;

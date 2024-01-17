@@ -170,7 +170,7 @@ const Utils = {
                 };
         
             } catch (error) {
-                console.log(`Could not load other pages for the api query: ${api}`);
+                console.log(`Warning: Could not load other pages for the api query: ${api}`);
                 // throw error;
             }
             

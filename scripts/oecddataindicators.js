@@ -205,10 +205,11 @@ async function getDimensions() {
             // Get CodeList
             const StructureCodeLists = responseDataStructure.documentElement.getElementsByTagName("structure:Codelists")[0];
             const codeLists = StructureCodeLists.getElementsByTagName("structure:Codelist");
-            codesArray = Array.from(codeLists).map(codeList => {
-                return {
-                    codeListId: codeList.id,
-                    codes: Array.from(codeList.getElementsByTagName("structure:Code")).map(code => {
+            for (let codeList of codeLists) {
+                let dim = dimensionsArray.find(entry => entry.codeListId === codeList.id);
+
+                if (dim) {
+                    dim.codes = Array.from(codeList.getElementsByTagName("structure:Code")).map(code => {
                         let codeNames = Array.from(code.getElementsByTagName("common:Name")).find(child => child.getAttribute? child.getAttribute('xml:lang') === 'en' : false);
 
                         return {
@@ -217,21 +218,47 @@ async function getDimensions() {
                         };
                     })
                 }
-            });
-            console.log(codesArray);
+
+            };
+
+            // Get Constraints
+            const StructureConstraints = responseDataStructure.documentElement.getElementsByTagName("structure:Constraints")[0];
+            const StructureAllowedConstraints = StructureConstraints.getElementsByTagName("structure:ContentConstraint");
+            let AllowedConstraint = Array.from(StructureAllowedConstraints).find(entry => entry.getAttribute('type')? entry.getAttribute('type') === 'Actual': false);
+            AllowedConstraint = AllowedConstraint? AllowedConstraint : StructureAllowedConstraints[0];
+            const StructurecubeRegion = AllowedConstraint.getElementsByTagName("structure:CubeRegion");
+            let IncludedCubeRegion = Array.from(StructurecubeRegion).find(entry => entry.include? entry.include === 'true': false);
+            IncludedCubeRegion = IncludedCubeRegion? IncludedCubeRegion : StructurecubeRegion[0];
+            const Constraints = IncludedCubeRegion.getElementsByTagName("common:KeyValue");
+            for (let constraint of Constraints) {
+                let dim = dimensionsArray.find(entry => entry.dimId === constraint.id);
+
+                if (dim) {
+                    let constraintList = Array.from(constraint.getElementsByTagName("common:Value")).map(entry => entry.textContent);
+                    let constraintSet = new Set(constraintList);
+                    dim.codes = dim.codes.filter(item => constraintSet.has(item.codeId));
+                }
+            }
 
             
             // Create html elements
             for (let dim of dimensionsArray) {
                 let dimSelect = document.createElement('select');
-                dimSelect.classList.add('button2');
+                dimSelect.classList.add('button4');
                 dimSelect.setAttribute('id', dim.dimId);
 
                 let dimOption = document.createElement('option');
                 dimOption.setAttribute('value', '');
                 dimOption.textContent = `Select ${dim.dimName? dim.dimName : dim.dimId}`;
-
                 dimSelect.appendChild(dimOption);
+
+                for (let code of dim.codes) {
+                    let dimOption = document.createElement('option');
+                    dimOption.setAttribute('value', `${code.codeId}`);
+                    dimOption.textContent = `${code.codeName}`;
+                    dimSelect.appendChild(dimOption);
+                }
+
                 div.appendChild(dimSelect);
             }
             

@@ -172,8 +172,8 @@ let categorySchemes = [
         mainAgencyID:'YFinance',
         id:'YFinance',
         name:'YFinance',
-        sourcetype: 'file',
-        source: 'python/data/[[indicator]].json',
+        sourcetype: 'api',
+        source: `${configSettings[environment]['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]`,
         structure: null,
         datatype: 'json',
         categories: [
@@ -199,7 +199,7 @@ let categorySchemes = [
         id:'OECD',
         name:'OECD',
         sourcetype: 'api',
-        source: 'https://sdmx.oecd.org/public/rest/data/[[agencyID]],[[indicator]],1.0/USA.M.HICP.CPI.PA._T.N.GY?startPeriod=1980&dimensionAtObservation=AllDimensions',
+        source: 'https://sdmx.oecd.org/public/rest/data/[[agencyID]],[[indicator]],1.0/[[dimensions]]?startPeriod=1980&dimensionAtObservation=AllDimensions',
         structure: 'https://sdmx.oecd.org/public/rest/dataflow/[[agencyID]]/[[indicator]]/1.0?references=all',
         datatype: 'json',
     }

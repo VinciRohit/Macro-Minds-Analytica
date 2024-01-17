@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', initializeWorldBankChart);
 
 async function initializeWorldBankChart() {
 	
-	// var api = 'https://api.worldbank.org/v2/country/xd/indicator/BX.KLT.DINV.WD.GD.ZS?format=json';
-
 	var worldbankchartoptions = { ...options };
 	worldbankchartoptions.scales.x = scale_x;
 	// worldbankchartoptions.onHover = Utils.verticalLineOnHover;	// Using Cross-Hair instead
@@ -22,27 +20,18 @@ async function initializeWorldBankChart() {
 	Utils.createButtonAsync({actions, container, myInteractiveLineChart})
 
 	let data;
-	var filename = `python/data/SNP500_normalised_max.json`;
-	var response = await Utils.fetchFile(filename);
-	data = Object.values(response).map(entry => ({ 
+	var api = `${configSettings[environment]['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]_normalised_max`
+	api = api.replace('[[indicator]]','SNP500');
+	const response = await Utils.fetchJsonApi(api);
+	data = Object.values(response['data']).map(entry => ({ 
 		x: window.luxon.DateTime.fromObject({
 												year: Utils.DateTime.fromMillis(entry.x).c.year
 												, month: Utils.DateTime.fromMillis(entry.x).c.month
 											})
 		, y: entry.c 
 	}));
-	// data = Utils.orderByDate(data).map(entry => ({ x: window.luxon.DateTime.fromObject({year: entry.date, month: 12}).ts, y: entry.value }));
-
-	// try {
-	// 	const response = await Utils.fetchJsonApi(api);
-	// 	data = Utils.orderByDate(response[1]).map(entry => ({ x: window.luxon.DateTime.fromObject({year: entry.date, month: 12}).ts, y: entry.value }));
-	// } catch (error) {
-	// 	throw error;
-	// }
 
 	data = Utils.normalizeArray(data, 'y', minValueWorldBankData, maxValueWorldBankData);
-	// console.log(minValueWorldBankData, maxValueWorldBankData, data)
 
-	// await Utils.updateChart(data, 'Foreign direct investment, net inflows (% of GDP)', myInteractiveLineChart);
 	await Utils.updateChart(data, 'S&P 500', myInteractiveLineChart);
 }

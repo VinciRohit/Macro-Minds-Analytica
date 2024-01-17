@@ -65,10 +65,11 @@ const FinancialChartButtonactions = [
     {
         name: 'Add Index',
         async handler(chart) {
+            var api = `${configSettings[environment]['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]`
             var share = document.getElementById('share_historicalData');
-            var filename = `python/data/${share.value}_normalised.json`;
-            var response = await Utils.fetchFile(filename);
-            const data = Object.values(response).map(entry => ({ x: entry.x, y: entry.c }));
+            api = api.replace('[[indicator]]',`${share.value}_normalised`);
+            const response = await Utils.fetchJsonApi(api);
+            const data = Object.values(response['data']).map(entry => ({ x: entry.x, y: entry.c }));
 
             await Utils.updateChart(data, share.selectedOptions[0].textContent, chart);
         },
@@ -114,9 +115,10 @@ const WorldBankDataButtonactions = [
             let data;
 
             if (selectedTopic.textContent === 'Market Indices') {
-                var filename = `python/data/${indicator.value}_normalised_max.json`;
-                var response = await Utils.fetchFile(filename);
-                data = Object.values(response).map(entry => ({ 
+                var api = `${configSettings[environment]['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]_normalised_max`
+                api = api.replace('[[indicator]]',selectedOption.value);
+                const response = await Utils.fetchJsonApi(api);
+                data = Object.values(response['data']).map(entry => ({ 
                     x: window.luxon.DateTime.fromObject({
                                                             year: Utils.DateTime.fromMillis(entry.x).c.year
                                                             , month: Utils.DateTime.fromMillis(entry.x).c.month
@@ -186,19 +188,24 @@ const MacroDataButtonactions = [
         async handler(chart) {
             // var topic = document.getElementById('topics');
             // const selectedTopic = topic.options[topic.selectedIndex];
-            var indicator = document.getElementById('indicators2');
-            const selectedOption = indicator.options[indicator.selectedIndex];
-            const label = selectedOption.textContent;
+            const div = document.getElementById('MacroEconomicAnalysisIndicators2');
+            const selectElements = div.getElementsByTagName('select');
+            const indicatorElement = Array.from(selectElements).find(entry => entry.id === 'indicators2');
+
+            const selectedOption = indicatorElement.options[indicatorElement.selectedIndex];
+            var label = selectedOption.textContent;
+            var api = selectedOption.source;
+
             console.log(`selected option Id is ${selectedOption.value}`);
             let data;
+            let dimensions;
 
             if (selectedOption.mainAgencyID === 'YFinance') {
                 // var filename = `python/data/${indicator.value}_normalised_max.json`;
-                let indicator = selectedOption.value + (selectedOption.dataflowAttributes.normalised? '_normalised':'') + (selectedOption.dataflowAttributes.period? `_${selectedOption.dataflowAttributes.period}`:'')
-                var filename = selectedOption.source;
-                filename = filename.replace('[[indicator]]',indicator);
-                var response = await Utils.fetchFile(filename);
-                data = Object.values(response).map(entry => ({ 
+                const indicator = selectedOption.value + (selectedOption.dataflowAttributes.normalised? '_normalised':'') + (selectedOption.dataflowAttributes.period? `_${selectedOption.dataflowAttributes.period}`:'')
+                api = api.replace('[[indicator]]',indicator);
+                const response = await Utils.fetchJsonApi(api);
+                data = Object.values(response['data']).map(entry => ({ 
                     x: window.luxon.DateTime.fromObject({
                                                             year: Utils.DateTime.fromMillis(entry.x).c.year
                                                             , month: Utils.DateTime.fromMillis(entry.x).c.month
@@ -206,28 +213,40 @@ const MacroDataButtonactions = [
                     , y: entry.c 
                 }));
             } else if (selectedOption.mainAgencyID === 'OECD') {
-                var api = selectedOption.source;
-                var datastructure = selectedOption.structure;
-                let agencyID = selectedOption.dataflowAttributes.agencyID? selectedOption.dataflowAttributes.agencyID:'all';
-                let indicator = selectedOption.value;
-                datastructure = datastructure.replace('[[agencyID]]',agencyID);
-                datastructure = datastructure.replace('[[indicator]]',indicator);
+                const agencyID = selectedOption.dataflowAttributes.agencyID? selectedOption.dataflowAttributes.agencyID:'all';
+                const indicator = selectedOption.value;
+
+                dimensions = Array.from(selectElements).filter(entry => entry.id != 'indicators2').map(item => item.options[item.selectedIndex].value);
+                dimensionslabels = Array.from(selectElements)
+                    .filter(entry => entry.id != 'indicators2')
+                    .filter(entry => entry.id != 'MEASURE')
+                    .filter(entry => entry.id != 'FREQ')
+                    .filter(entry => entry.id != 'METHODOLOGY')
+                    .filter(entry => entry.id != 'UNIT_MEASURE')
+                    .filter(entry => entry.id != 'ADJUSTMENT')
+                    .map(item => item.options[item.selectedIndex].textContent);
+
+                label = label + ' - ' + dimensionslabels.join(' - ');
+
                 api = api.replace('[[agencyID]]',agencyID);
                 api = api.replace('[[indicator]]',indicator);
-                try {
-                    // Get Data
-                    const response = await Utils.fetchXmlApi(api);
-                    const observations = response.documentElement.getElementsByTagName("generic:Obs");
-                    data = Array.from(observations).map(obs => ({
-                        x: window.luxon.DateTime.fromFormat(
-                            Array.from(obs.getElementsByTagName("generic:Value")).find(tag => tag.id === 'TIME_PERIOD').getAttribute("value"),
-                            "yyyy-MM"),
-                        y: obs.getElementsByTagName("generic:ObsValue")[0].getAttribute("value")
-                    }));
+                api = api.replace('[[dimensions]]',dimensions.join('.'));
+
+                // try {
+                // Get Data
+                const response = await Utils.fetchXmlApi(api);
+                const observations = response.documentElement.getElementsByTagName("generic:Obs");
+                data = Array.from(observations).map(obs => {
+                    const date = Array.from(obs.getElementsByTagName("generic:Value")).find(tag => tag.id === 'TIME_PERIOD').getAttribute("value");
+                    
+                    return {
+                    x: window.luxon.DateTime.fromFormat(date,"yyyy-MM").invalid? window.luxon.DateTime.fromFormat(date,"yyyy") : window.luxon.DateTime.fromFormat(date,"yyyy-MM"),
+                    y: obs.getElementsByTagName("generic:ObsValue")[0].getAttribute("value")
+                }});
                     // data = Utils.orderByDate(response[1]).map(entry => ({ x: window.luxon.DateTime.fromObject({year: entry.date, month: 12}).ts, y: entry.value }));
-                } catch (error) {
-                    throw error;
-                }
+                // } catch (error) {
+                //     throw error;
+                // }
             };
             
             // data = Utils.normalizeArray(data, 'y', minValueMacro, maxValueMacro);
@@ -238,7 +257,7 @@ const MacroDataButtonactions = [
     {
         name: 'Remove Selected Indicator',
         async handler(chart) {
-            var indicator = document.getElementById('indicators');
+            var indicator = document.getElementById('indicators2');
             const selectedOption = indicator.options[indicator.selectedIndex];
             chart.data.datasets = chart.data.datasets.filter(dataset => dataset.label !== selectedOption.textContent);
             chart.update();

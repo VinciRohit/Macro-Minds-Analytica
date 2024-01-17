@@ -21,6 +21,7 @@
     <script src="scripts/include/crosshair.js"></script>
 
     <script src="scripts/include/utils.js"></script>
+    <script src="scripts/include/settings.js"></script>
     <script src="scripts/include/config.js"></script>
     <script src="scripts/include/actions.js"></script>
 </head>
@@ -74,8 +75,8 @@
                     <span class="caret"></span></button>
             </div>
             
-            <div id="MacroEconomicAnalysisIndicators2">
-                <select class="button2" id="indicators2" onchange="getDimensions()">
+            <div id="MacroEconomicAnalysisIndicators2" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <select class="button4" id="indicators2" onchange="getDimensions()">
                     <option value="">Select Indicator</option>
                 </select>
             </div>
@@ -126,7 +127,7 @@
         </form>
     </section>
 
-    <script src="script.js"></script>
+    <script src="scripts/subscribe.js"></script>
 
     <footer>
         <p>&copy; 2023 Your Market Insights. All rights reserved.</p>
