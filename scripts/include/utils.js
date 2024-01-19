@@ -210,7 +210,7 @@ const Utils = {
         });
         return data
     },
-    async updateChart (data, label, myInteractiveLineChart, yAxisID) {
+    async updateChart (data, label, myInteractiveLineChart, yAxisID, tag) {
         myInteractiveLineChart.data.datasets.forEach(dataset => {
             if (dataset.label === label) {
                 throw 'indicator already in chart';
@@ -222,11 +222,12 @@ const Utils = {
         const dataset = {
             label: label,
             data: data,
-            // yAxisID: label, // Associate with the first y-axis
             borderColor: dsColor,
             backgroundColor: Utils.gradientize(myInteractiveLineChart, dsColor, 1),
             fill: true
         };
+
+        if (tag) {dataset.tag = tag}
 
         if (yAxisID) {
             dataset.yAxisID = yAxisID;

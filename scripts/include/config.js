@@ -103,16 +103,21 @@ var options = {
         zoom: {
             pan: {
                 enabled: true,
-                // modifierKey: 'ctrl',
+                mode: 'xy',
+            // modifierKey: 'ctrl',
             },
             zoom: {
                 drag: {
+                    enabled: false,
+                },
+                wheel: {
+                    enabled: false,
+                },
+                pinch: {
                     enabled: true,
                 },
-                // pinch: {
-                //     enabled: true,
-                // },
                 mode: 'xy',
+                  // scaleMode: 'y'
             },
         },
         	// Using Cross-Hair instead
@@ -184,6 +189,24 @@ let categorySchemes = [
                     {
                         id:'SNP500',
                         name:'S&P 500',
+                        attributes: {
+                            period: 'max',
+                            interval: '1mo',
+                            normalised: true
+                        }
+                    },
+                    {
+                        id:'NIFTY50',
+                        name:'Nifty 50',
+                        attributes: {
+                            period: 'max',
+                            interval: '1mo',
+                            normalised: true
+                        }
+                    },
+                    {
+                        id:'RUSSELL2000',
+                        name:'Russell 2000',
                         attributes: {
                             period: 'max',
                             interval: '1mo',

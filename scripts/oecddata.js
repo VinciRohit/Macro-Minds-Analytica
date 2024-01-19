@@ -10,8 +10,8 @@ async function initializeMacroChart() {
 	macrochartoptions.scales.x = scale_x;
 	// macrochartoptions.onHover = Utils.verticalLineOnHover;	// Using Cross-Hair instead
 
-	var container = document.getElementById('MacroEconomicAnalysisContainer2');
-	const ctx = document.getElementById('MacroEconomicAnalysis2').getContext('2d');
+	var container = document.getElementById('AllDataChartContainer');
+	const ctx = document.getElementById('AllDataChart').getContext('2d');
 	const myInteractiveLineChart = new Chart(ctx, {
 		type: 'line',
 	options: macrochartoptions,

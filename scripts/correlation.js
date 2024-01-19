@@ -1,3 +1,36 @@
+// Get data for correlation
+
+async function getCorrelations() {
+  const datasets = Chart.getChart('AllDataChart').data.datasets
+  const datasets_filtered = datasets.map(entry => ({tag: entry.tag, data:entry.data}))
+
+  api = `${configSettings[environment]['pythonApiUrl']}/get_correlations`
+  response = await Utils.fetchJsonApi(api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(datasets_filtered)
+  })
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Config
 DATA_COUNT = 7;
 

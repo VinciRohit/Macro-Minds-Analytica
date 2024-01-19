@@ -199,11 +199,13 @@ const MacroDataButtonactions = [
             console.log(`selected option Id is ${selectedOption.value}`);
             let data;
             let dimensions;
+            let tag;    // used for global understanding of the data
 
             if (selectedOption.mainAgencyID === 'YFinance') {
                 // var filename = `python/data/${indicator.value}_normalised_max.json`;
                 const indicator = selectedOption.value + (selectedOption.dataflowAttributes.normalised? '_normalised':'') + (selectedOption.dataflowAttributes.period? `_${selectedOption.dataflowAttributes.period}`:'')
                 api = api.replace('[[indicator]]',indicator);
+                tag = selectedOption.mainAgencyID + '/' + indicator;
                 const response = await Utils.fetchJsonApi(api);
                 data = Object.values(response['data']).map(entry => ({ 
                     x: window.luxon.DateTime.fromObject({
@@ -232,6 +234,8 @@ const MacroDataButtonactions = [
                 api = api.replace('[[indicator]]',indicator);
                 api = api.replace('[[dimensions]]',dimensions.join('.'));
 
+                tag = selectedOption.mainAgencyID + '/' + indicator + '/' + dimensions.join('.');
+
                 // try {
                 // Get Data
                 const response = await Utils.fetchXmlApi(api);
@@ -251,7 +255,7 @@ const MacroDataButtonactions = [
             
             // data = Utils.normalizeArray(data, 'y', minValueMacro, maxValueMacro);
 
-            Utils.updateChart(data, label, chart, `y${chart.data.datasets.length}`);
+            Utils.updateChart(data, label, chart, `y${chart.data.datasets.length}`, tag);
         },
     },
     {
