@@ -258,6 +258,16 @@ const Utils = {
           x: item.x,
           y: item[key] ? ((item[key] - minValueKey) / (maxValueKey - minValueKey) * (maxValue - minValue)) + minValue : null
         }));
+    },
+    getNamesFromTags (tag) {
+        let flows = tag.split('/')
+        if (flows[0] === 'YFinance') {
+            let indice = flows[2].split('_')
+            return categorySchemes.find(entry => entry.mainAgencyID === flows[0])
+                                .categories.find(entry => entry.id === flows[1])
+                                .dataflows.find(entry => entry.id === indice[0])
+                                .name
+        }
     }
     
 };

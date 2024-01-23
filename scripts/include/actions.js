@@ -205,7 +205,7 @@ const MacroDataButtonactions = [
                 // var filename = `python/data/${indicator.value}_normalised_max.json`;
                 const indicator = selectedOption.value + (selectedOption.dataflowAttributes.normalised? '_normalised':'') + (selectedOption.dataflowAttributes.period? `_${selectedOption.dataflowAttributes.period}`:'')
                 api = api.replace('[[indicator]]',indicator);
-                tag = selectedOption.mainAgencyID + '/' + indicator;
+                tag = selectedOption.mainAgencyID + '/' + selectedOption.Topic + '/' + indicator;
                 const response = await Utils.fetchJsonApi(api);
                 data = Object.values(response['data']).map(entry => ({ 
                     x: window.luxon.DateTime.fromObject({
@@ -234,7 +234,7 @@ const MacroDataButtonactions = [
                 api = api.replace('[[indicator]]',indicator);
                 api = api.replace('[[dimensions]]',dimensions.join('.'));
 
-                tag = selectedOption.mainAgencyID + '/' + indicator + '/' + dimensions.join('.');
+                tag = selectedOption.mainAgencyID + '/' + selectedOption.Topic + '/' + indicator + '/' + dimensions.join('.');
 
                 // try {
                 // Get Data

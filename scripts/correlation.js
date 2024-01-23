@@ -11,13 +11,16 @@ async function getCorrelations() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(datasets_filtered)
-  })
+  });
+
+  data = response['data'];
+  
+  for (let corr of data) {
+    corr_json = JSON.parse(corr);
+
+  }
 
 }
-
-
-
-
 
 
 
