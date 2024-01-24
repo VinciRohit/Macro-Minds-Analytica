@@ -14,11 +14,26 @@ async function getCorrelations() {
   });
 
   data = response['data'];
+  let updated_data = [];
   
   for (let corr of data) {
     corr_json = JSON.parse(corr);
+    let updated_corr_json = [];
+
+    for (let corr_column of corr_json) {
+      let updated_corr_column = {};
+      for (const tag in corr_column) {
+        if (corr_column.hasOwnProperty(tag)) {
+          let tag_name = Utils.getNamesFromTags(tag)
+          updated_corr_column[tag_name] = corr_column[tag];
+        }
+      }
+      updated_corr_json.push(updated_corr_column);
+    }
+    updated_data.push(updated_corr_json);
 
   }
+  console.log(updated_data);
 
 }
 

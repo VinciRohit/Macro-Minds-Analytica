@@ -101,15 +101,17 @@ function filterByTopic2(selectedTopics) {
 
     let dataflows = [];
     let scheme = categorySchemes.find(categoryScheme => categoryScheme.mainAgencyID === selectedTopics[0]);
-    let topic;
+    let topic = '';
 
     for (let i = 1; i < selectedTopics.length; i++) {
         scheme = scheme.categories.find(categoryScheme => categoryScheme.id === selectedTopics[i]);
         if (i === selectedTopics.length - 1) {
             dataflows = scheme.dataflows;
-            topic = selectedTopics[i]
+            topic = topic + selectedTopics[i]
             // console.log(dataflows);
             break;
+        } else {
+            topic = topic + selectedTopics[i] + '/' ;
         }
     }
 

@@ -267,6 +267,19 @@ const Utils = {
                                 .categories.find(entry => entry.id === flows[1])
                                 .dataflows.find(entry => entry.id === indice[0])
                                 .name
+        } else if (flows[0] === 'OECD') {
+            // let indice = flows[2].split('_')
+            let categories = categorySchemes.find(entry => entry.mainAgencyID === flows[0])
+                                .categories.find(entry => entry.id === flows[1])
+                                // .dataflows.find(entry => entry.id === flows[2])
+                                // .name
+            for (i=2; i < flows.length - 1; i++) {
+                if (categories.dataflows.find(entry => entry.id === flows[i])) {
+                    return categories.dataflows.find(entry => entry.id === flows[i]).name
+                } else {
+                    categories = categories.categories.find(entry => entry.id === flows[i])
+                }
+            }
         }
     }
     
