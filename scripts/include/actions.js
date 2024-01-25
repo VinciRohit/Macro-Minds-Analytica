@@ -67,7 +67,7 @@ const FinancialChartButtonactions = [
         async handler(chart) {
             var api = `${configSettings[environment]['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]`
             var share = document.getElementById('share_historicalData');
-            api = api.replace('[[indicator]]',`${share.value}_normalised`);
+            api = api.replace('[[indicator]]',`${share.value}_normalised_5y`);
             const response = await Utils.fetchJsonApi(api);
             const data = Object.values(response['data']).map(entry => ({ x: entry.x, y: entry.c }));
 
@@ -279,6 +279,12 @@ const MacroDataButtonactions = [
         async handler(chart) {
             chart.data.datasets = [];
             chart.update();
+        },
+    },
+    {
+        name: 'Draw Correlations',
+        async handler() {
+            Utils.getCorrelationChart('AllDataChart','CorrelationContainer')
         },
     },
     {
