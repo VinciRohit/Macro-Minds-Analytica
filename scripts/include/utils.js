@@ -272,27 +272,26 @@ const Utils = {
             body: JSON.stringify(datasets_filtered)
         });
         
-        data = response['data'];
-        let updated_data = [];
+        data = response['dataflows'];
+        let updated_dataflows = [];
         
         for (let corr of data) {
-            corr_json = JSON.parse(corr);
-            let updated_corr_json = [];
+            corr_json = corr['data'];
+            corr_tag = corr['tag'];
+            let updated_data = {'tag': corr_tag, 'data': {}};
         
-            for (let corr_column of corr_json) {
-            let updated_corr_column = {};
-            for (const tag in corr_column) {
-                if (corr_column.hasOwnProperty(tag)) {
-                let tag_name = Utils.getNamesFromTags(tag)
-                updated_corr_column[tag_name] = corr_column[tag];
+            for (const corr_column in corr_json) {
+                let tag_name_i = Utils.getNamesFromTags(corr_column)
+                updated_data['data'][tag_name_i] = {};
+                for (const tag in corr_json[corr_column]) {
+                    let tag_name_j = Utils.getNamesFromTags(tag)
+                    updated_data['data'][tag_name_i][tag_name_j] = corr_json[corr_column][tag];
                 }
             }
-            updated_corr_json.push(updated_corr_column);
-            }
-            updated_data.push(updated_corr_json);
+            updated_dataflows.push(updated_data);
         
         }
-        return updated_data;
+        return updated_dataflows;
         
     },
     async getCorrelationChart (chart_name, container_name) {
@@ -314,29 +313,29 @@ const Utils = {
           let context = canvas.getContext('2d');
       
           // Get Data
-          var categories = Object.keys(corr_data[0]);
+          var categories = Object.keys(corr_data['data']);
           // for (const tag in corr_data[0]) {categories.push(tag)}
           var data = []
           for (i=0; i<categories.length; i++) {
             for (j=0; j<categories.length; j++) {
-              data.push({x:categories[i], y:categories[j], v:corr_data[i][categories[j]]})
+              data.push({x:categories[i], y:categories[j], v:corr_data['data'][categories[i]][categories[j]]})
             }
           }
           
           
           let canvas_data = {
             datasets: [{
-              label: 'My Matrix',
+              label: corr_data['tag'],
               data: data,
               backgroundColor(context) {
                 const value = context.dataset.data[context.dataIndex].v;
-                const alpha = (value - 5) / 40;
+                // const alpha = (value - 5) / 40;
                 const rgbaColor = 'rgba(0, 255, 0, ' + value + ')';
                 return rgbaColor;
               },
               borderColor(context) {
                 const value = context.dataset.data[context.dataIndex].v;
-                const alpha = (value - 5) / 40;
+                // const alpha = (value - 5) / 40;
                 const rgbaColor = 'rgba(0, 255, 0, ' + value + ')';
                 return rgbaColor;
               },
@@ -353,6 +352,10 @@ const Utils = {
             data: canvas_data,
             options: {
               plugins: {
+                title: {
+                    display: true,
+                    text: corr_data['tag']
+                },
                 legend: false,
                 tooltip: {
                   callbacks: {
@@ -422,4 +425,182 @@ const Utils = {
     
 };
 
-
+const Utils2 = {
+    filterByTopic2(selectedTopics) {
+        const indicatorsDropdown = document.getElementById('indicators2');
+        let indicators = indicatorsDropdown.querySelectorAll('option');
+        const AgencyScheme = categorySchemes.find(categoryScheme => categoryScheme.mainAgencyID === selectedTopics[0]);
+    
+        let dataflows = [];
+        let scheme = categorySchemes.find(categoryScheme => categoryScheme.mainAgencyID === selectedTopics[0]);
+        let topic = '';
+    
+        for (let i = 1; i < selectedTopics.length; i++) {
+            scheme = scheme.categories.find(categoryScheme => categoryScheme.id === selectedTopics[i]);
+            if (i === selectedTopics.length - 1) {
+                dataflows = scheme.dataflows;
+                topic = topic + selectedTopics[i]
+                // console.log(dataflows);
+                break;
+            } else {
+                topic = topic + selectedTopics[i] + '/' ;
+            }
+        }
+    
+        let optionsSet = [];
+    
+        for (let opt of indicators) {
+            if (opt.value != "") {
+                opt.style.display = 'none';
+            }
+        }
+    
+        dataflows.forEach(indicator => {
+    
+            let optionAlreadyPresent = null;
+    
+            for (let opt of indicators) {
+                if (opt.value === indicator.id) {
+                    optionAlreadyPresent = opt;
+                }
+            }
+    
+            if (optionAlreadyPresent) {
+                optionAlreadyPresent.style.display = 'block';
+                optionsSet.push(optionAlreadyPresent);
+            } else {
+                const option = document.createElement('option');
+                option.sourcetype = AgencyScheme.sourcetype;
+                option.source = AgencyScheme.source;
+                option.structure = AgencyScheme.structure;
+                option.datatype = AgencyScheme.datatype;
+                option.Topic = topic;
+                option.mainAgencyID = AgencyScheme.mainAgencyID;
+                option.dataflowAttributes = indicator.attributes;
+                option.value = indicator.id;
+                option.textContent = `${indicator.name}`;
+                indicatorsDropdown.appendChild(option);
+                option.style.display = 'block';
+                optionsSet.push(option);
+            }
+    
+        })
+    
+        // optionsSet[0].selected = true;
+    
+    },
+    async getDimensions() {
+        const indicator = document.getElementById('indicators2');
+        const selectedOption = indicator.options[indicator.selectedIndex];
+        const div = document.getElementById('MacroEconomicAnalysisIndicators2');
+        let data;
+    
+        // Remove all previous filters
+        while (div.lastElementChild && (div.lastElementChild.id != 'indicators2')) {
+            div.removeChild(div.lastElementChild)
+        }
+    
+        if (selectedOption.mainAgencyID === 'YFinance') {
+        } else if (selectedOption.mainAgencyID === 'OECD') {
+            var datastructure = selectedOption.structure;
+            let agencyID = selectedOption.dataflowAttributes.agencyID? selectedOption.dataflowAttributes.agencyID:'all';
+            let indicator = selectedOption.value;
+            datastructure = datastructure.replace('[[agencyID]]',agencyID);
+            datastructure = datastructure.replace('[[indicator]]',indicator);
+            try {
+                const responseDataStructure = await Utils.fetchXmlApi(datastructure);
+    
+                // Get Dimensions
+                const dimensionList = responseDataStructure.documentElement.getElementsByTagName("structure:DimensionList")[0];
+                const dimensions = dimensionList.getElementsByTagName("structure:Dimension");
+                dimensionsArray = Array.from(dimensions).map(dim => {
+                    let codes = Array.from(dim.getElementsByTagName("structure:Enumeration")).map(tag => Array.from(tag.children).find(child => child.getAttribute? child.getAttribute('class') === 'Codelist' : false));
+    
+                    return {
+                    dimId: dim.getAttribute("id"),
+                    dimPosition: dim.getAttribute("position"),
+                    // codeListId: Array.from(Array.from(dim.getElementsByTagName("structure:Enumeration"))[0].getElementsByTagName('Ref')).find(tag => tag.getAttribute('class') === 'Codelist').id
+                    codeListId: codes.length? codes[0].id : ''
+                    };
+                });
+                dimensionsArray.filter(dim => dim.codeListId); // remove elements where codeListId is blank
+    
+                // Get Concepts
+                const StructureConcepts = responseDataStructure.documentElement.getElementsByTagName("structure:Concepts")[0];
+                const Concepts = StructureConcepts.getElementsByTagName("structure:Concept");
+                for (let concept of Concepts) {
+                    let dim = dimensionsArray.find(entry => entry.dimId === concept.id);
+                    if (dim) {
+                        let conceptNameStructure = Array.from(concept.getElementsByTagName("common:Name")).find(child => child.getAttribute? child.getAttribute('xml:lang') === 'en' : false);
+                        let conceptName = conceptNameStructure? conceptNameStructure.textContent : (Array.from(concept.getElementsByTagName("common:Name")).length? code.getElementsByTagName("common:Name")[0].textContent : '');
+                        dim.dimName = conceptName;
+                    }
+                }
+    
+                // Get CodeList
+                const StructureCodeLists = responseDataStructure.documentElement.getElementsByTagName("structure:Codelists")[0];
+                const codeLists = StructureCodeLists.getElementsByTagName("structure:Codelist");
+                for (let codeList of codeLists) {
+                    let dim = dimensionsArray.find(entry => entry.codeListId === codeList.id);
+    
+                    if (dim) {
+                        dim.codes = Array.from(codeList.getElementsByTagName("structure:Code")).map(code => {
+                            let codeNames = Array.from(code.getElementsByTagName("common:Name")).find(child => child.getAttribute? child.getAttribute('xml:lang') === 'en' : false);
+    
+                            return {
+                                codeId: code.getAttribute("id"),
+                                codeName: codeNames? codeNames.textContent : (Array.from(code.getElementsByTagName("common:Name")).length? code.getElementsByTagName("common:Name")[0].textContent : ''),
+                            };
+                        })
+                    }
+    
+                };
+    
+                // Get Constraints
+                const StructureConstraints = responseDataStructure.documentElement.getElementsByTagName("structure:Constraints")[0];
+                const StructureAllowedConstraints = StructureConstraints.getElementsByTagName("structure:ContentConstraint");
+                let AllowedConstraint = Array.from(StructureAllowedConstraints).find(entry => entry.getAttribute('type')? entry.getAttribute('type') === 'Actual': false);
+                AllowedConstraint = AllowedConstraint? AllowedConstraint : StructureAllowedConstraints[0];
+                const StructurecubeRegion = AllowedConstraint.getElementsByTagName("structure:CubeRegion");
+                let IncludedCubeRegion = Array.from(StructurecubeRegion).find(entry => entry.include? entry.include === 'true': false);
+                IncludedCubeRegion = IncludedCubeRegion? IncludedCubeRegion : StructurecubeRegion[0];
+                const Constraints = IncludedCubeRegion.getElementsByTagName("common:KeyValue");
+                for (let constraint of Constraints) {
+                    let dim = dimensionsArray.find(entry => entry.dimId === constraint.id);
+    
+                    if (dim) {
+                        let constraintList = Array.from(constraint.getElementsByTagName("common:Value")).map(entry => entry.textContent);
+                        let constraintSet = new Set(constraintList);
+                        dim.codes = dim.codes.filter(item => constraintSet.has(item.codeId));
+                    }
+                }
+    
+                
+                // Create html elements
+                for (let dim of dimensionsArray) {
+                    let dimSelect = document.createElement('select');
+                    dimSelect.classList.add('button4');
+                    dimSelect.setAttribute('id', dim.dimId);
+    
+                    let dimOption = document.createElement('option');
+                    dimOption.setAttribute('value', '');
+                    dimOption.textContent = `Select ${dim.dimName? dim.dimName : dim.dimId}`;
+                    dimSelect.appendChild(dimOption);
+    
+                    for (let code of dim.codes) {
+                        let dimOption = document.createElement('option');
+                        dimOption.setAttribute('value', `${code.codeId}`);
+                        dimOption.textContent = `${code.codeName}`;
+                        dimSelect.appendChild(dimOption);
+                    }
+    
+                    div.appendChild(dimSelect);
+                }
+                
+    
+            } catch (error) {
+                throw error;
+            }
+        }
+    },
+}
