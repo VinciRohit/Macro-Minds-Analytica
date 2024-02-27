@@ -297,15 +297,26 @@ const Utils = {
     async getCorrelationChart (chart_name, container_name) {
         const correlationDatasets = await Utils.getCorrelations(chart_name);
         const container = document.getElementById(container_name);
+
+        // First remove all existing canvases
+        for (let i = container.children.length - 1; i >= 0; i--) {
+            const child = container.children[i];
+            if (child.tagName.toLowerCase() === 'canvas') {
+                container.removeChild(child);
+            }
+        }
       
         for (let corr_data of correlationDatasets) {
           // Create a canvas element
           var canvas = document.createElement('canvas');
-          canvas.className = 'button2'
-      
-          // Set attributes for the canvas (width and height)
-          // canvas.width = 400; // Set your preferred width
-          // canvas.height = 200; // Set your preferred height
+          var containerWidth = container.offsetWidth;
+          var canvasWidth = containerWidth * 0.05 * Object.keys(corr_data['data']).length; // 10% of container width x number of datasets
+          var canvasHeight = canvasWidth; // Assuming you want the height to be the same as the width
+
+          // canvas.width = canvasWidth;
+          // canvas.height = canvasHeight;
+
+            canvas.style = 'display: inline-block'
       
           // Append the canvas element to the container
           container.appendChild(canvas);
@@ -351,6 +362,11 @@ const Utils = {
             type: 'matrix',
             data: canvas_data,
             options: {
+            //   maintainAspectRatio: true,
+              responsive: false,  
+              width: canvasWidth,
+              height: canvasHeight,
+            //   aspectRatio: 1,
               plugins: {
                 title: {
                     display: true,
