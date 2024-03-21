@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', fetchOECDDataCategorisations);
+document.addEventListener('DOMContentLoaded', fetchOECDDataIndicators);
 
 async function fetchOECDDataCategorisations() {
     // Add index data
@@ -38,3 +39,45 @@ async function fetchOECDDataCategorisations() {
         console.error('Error fetching data:', error);
     }
 }
+
+async function fetchOECDDataIndicators() {
+    // Add index data
+    const oecdCategoryScheme = categorySchemes.find(categoryScheme => categoryScheme.mainAgencyID === 'OECD');
+    
+    try {
+        api = 'https://sdmx.oecd.org/public/rest/categoryscheme';
+        const jsonData = await Utils.fetchJsonApi(api, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/vnd.sdmx.structure+json; charset=utf-8; version=1.0'
+            }
+        });
+
+        oecdCategoryScheme.categories = oecdCategoryScheme.categories? oecdCategoryScheme.categories : [];
+
+        function nestedCategories(categories, pushSchemeCategory) {
+            for (let category of categories) {
+
+                pushSchemeCategory.push({
+                    id: category.id,
+                    name: category.name,
+                })
+
+                if (category.categories){
+                    const nestedPushSchemeCategory = pushSchemeCategory.find(categoryScheme => categoryScheme.id === category.id);
+                    nestedPushSchemeCategory.categories = nestedPushSchemeCategory.categories? nestedPushSchemeCategory.categories : [];
+                    nestedCategories(category.categories, nestedPushSchemeCategory.categories)
+                }
+            }
+        }
+        
+        nestedCategories(jsonData.data.categorySchemes[0].categories, oecdCategoryScheme.categories);
+
+        // create dropdowns
+        await Utils2.categorySchemesDropdownFilteringAndEventHandling();
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+

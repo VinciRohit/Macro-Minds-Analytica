@@ -1,5 +1,7 @@
 // Define a simple Utils object with utility functions
-const Utils = {
+// let timer;
+
+const Utils_deprecated = {
     months: ({ count }) => {
         // Function to generate an array of month labels
         // Implement as needed for your use case
@@ -17,6 +19,40 @@ const Utils = {
         // Implement as needed for your use case
         return Math.floor(Math.random() * (max - min + 1)) + min;
     },
+    verticalLine: {
+        id: 'verticalLine',
+        beforeDraw(chart, args, options) {
+            if (chart.options.plugins.customLine.drawLine) {
+                var {ctx, chartArea: {left, top, right, bottom}, scales: {x, y}} = chart;
+                var x = chart.options.plugins.customLine.value;
+                // Draw the vertical line
+                ctx.beginPath();
+                ctx.moveTo(x, y.top);
+                ctx.lineTo(x, y.bottom);
+                ctx.strokeStyle = chart.options.plugins.annotation.annotations[0].borderColor;
+                ctx.stroke();
+            }
+        }
+    },
+    verticalLineOnHover (event) {
+		var element = event.chart.getElementsAtEventForMode(event, 'nearest', { intersect: false, axis:'x' }, false);
+
+		if (element.length) {
+		var {ctx, chartArea: {left, top, right, bottom}, scales: {x, y}} = event.chart;
+		var x = element[0].element.x
+		//event.chart.scales.x.getValueForPixel(x))
+		// console.log(element[0].element.$context.parsed.x);
+		event.chart.options.plugins.customLine.value = x;
+		event.chart.options.plugins.customLine.drawLine = true;
+		} else {
+		event.chart.options.plugins.customLine.drawLine = false;
+		}
+		event.chart.update();
+	},
+}
+
+const Utils = {
+    
     CHART_COLORS: {
         red: 'rgb(255, 99, 132)',
         blue: 'rgb(54, 162, 235)',
@@ -58,36 +94,7 @@ const Utils = {
         return `rgba(${rgbaValues.join(', ')})`;
     },
     DateTime: window && window.luxon && window.luxon.DateTime,
-    verticalLine: {
-        id: 'verticalLine',
-        beforeDraw(chart, args, options) {
-            if (chart.options.plugins.customLine.drawLine) {
-                var {ctx, chartArea: {left, top, right, bottom}, scales: {x, y}} = chart;
-                var x = chart.options.plugins.customLine.value;
-                // Draw the vertical line
-                ctx.beginPath();
-                ctx.moveTo(x, y.top);
-                ctx.lineTo(x, y.bottom);
-                ctx.strokeStyle = chart.options.plugins.annotation.annotations[0].borderColor;
-                ctx.stroke();
-            }
-        }
-    },
-    verticalLineOnHover (event) {
-		var element = event.chart.getElementsAtEventForMode(event, 'nearest', { intersect: false, axis:'x' }, false);
-
-		if (element.length) {
-		var {ctx, chartArea: {left, top, right, bottom}, scales: {x, y}} = event.chart;
-		var x = element[0].element.x
-		//event.chart.scales.x.getValueForPixel(x))
-		// console.log(element[0].element.$context.parsed.x);
-		event.chart.options.plugins.customLine.value = x;
-		event.chart.options.plugins.customLine.drawLine = true;
-		} else {
-		event.chart.options.plugins.customLine.drawLine = false;
-		}
-		event.chart.update();
-	},
+    
     namedColor: index => {
         // Function to get a predefined color based on index
         // Implement as needed for your use case
@@ -261,9 +268,10 @@ const Utils = {
     },
     async getCorrelations (chart_name) {
         const datasets = Chart.getChart(chart_name).data.datasets
+        Chart.getChart('AllDataChart').getDatasetMeta(0)._dataset
         const datasets_filtered = datasets.map(entry => ({tag: entry.tag, data:entry.data}))
         
-        api = `${configSettings[environment]['pythonApiUrl']}/get_correlations`
+        api = `${configSettings[environment]['python']['pythonApiUrl']}/get_correlations`
         response = await Utils.fetchJsonApi(api, {
             method: 'POST',
             headers: {
@@ -437,11 +445,64 @@ const Utils = {
                 }
             }
         }
-    }
-    
+    },
 };
 
 const Utils2 = {
+    async categorySchemesDropdownFilteringAndEventHandling() {
+        // Function to create the dropdown from JSON
+        function createDropdown(container, data) {
+            var ul = $("<ul>").addClass("dropdown-menu");
+            container.append(ul);
+    
+            $.each(data, function (index, item) {
+            var li = $("<li>");
+            ul.append(li);
+    
+            if (item.categories && item.categories.length > 0) {
+                li.addClass("dropdown-submenu");
+                // li.attr("id", item.id).text(item.name).append($("<span>").addClass("caret"))
+                li.append(
+                $("<a>").addClass("button2").attr("id", item.id).attr("type", "button").text(item.name + " ").append($("<span>").addClass("caret"))
+                );
+                createDropdown(li, item.categories);
+            } else {
+                li.append($("<a>").addClass("button3").attr("id", item.id).text(item.name));
+            }
+            });
+        }
+    
+        // Call the function to create the dropdown
+        createDropdown($("#dynamicDropdown"), categorySchemes);
+    
+        // Add event handling for dynamic dropdown
+        $(document).on("click", '.dropdown-submenu a.button2', function (e) {
+            if ($(this).next('ul')[0].getAttribute("style") != "display: block;") {
+                $(".dropdown-menu").slice(1).attr('style','diplay: none;');
+                for (let parent of $(this).parents(".dropdown-menu").slice(0, -1)) {
+                    parent.setAttribute("style", "display: block;")
+                }
+            }
+            
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+        });
+    
+        $(document).on("click", '.dropdown-submenu a.button3', function (e) {
+            const SelectedData = document.getElementById('SelectData');
+            SelectedData.innerHTML = $(this)[0].textContent + ' <span class="caret"></span>';
+    
+            var filterid = [];
+            filterid.push($(this)[0].id);
+            for (let parent of $(this).parents(".dropdown-submenu")) {
+                filterid.push(parent.children[0].id);
+            }
+    
+            // console.log(filterid.reverse());
+            Utils2.filterByTopic2(filterid.reverse());
+        });
+    },
     filterByTopic2(selectedTopics) {
         const indicatorsDropdown = document.getElementById('indicators2');
         let indicators = indicatorsDropdown.querySelectorAll('option');
@@ -509,7 +570,7 @@ const Utils2 = {
         const indicator = document.getElementById('indicators2');
         const selectedOption = indicator.options[indicator.selectedIndex];
         const div = document.getElementById('MacroEconomicAnalysisIndicators2');
-        let data;
+        // let data;
     
         // Remove all previous filters
         while (div.lastElementChild && (div.lastElementChild.id != 'indicators2')) {
@@ -518,7 +579,13 @@ const Utils2 = {
     
         if (selectedOption.mainAgencyID === 'YFinance') {
         } else if (selectedOption.mainAgencyID === 'OECD') {
-            var datastructure = selectedOption.structure;
+            this.OECDDimensions(selectedOption, div);
+        } else if (selectedOption.mainAgencyID === 'AVANTAGE') {
+            this.AVantageDimensions(selectedOption, div);
+        }
+    },
+    async OECDDimensions(selectedOption, div) {
+        var datastructure = selectedOption.structure;
             let agencyID = selectedOption.dataflowAttributes.agencyID? selectedOption.dataflowAttributes.agencyID:'all';
             let indicator = selectedOption.value;
             datastructure = datastructure.replace('[[agencyID]]',agencyID);
@@ -617,6 +684,29 @@ const Utils2 = {
             } catch (error) {
                 throw error;
             }
+    },
+    async AVantageDimensions(selectedOption, div) {
+        var dataflowAttributes = selectedOption.dataflowAttributes;
+        if (dataflowAttributes.hasTicker) {
+            let dimInput = document.createElement('input');
+            dimInput.classList.add('textfield');
+            dimInput.setAttribute('id', 'tickerInput');
+            dimInput.setAttribute('placeholder', 'e.g. Ticker');
+            dimInput.setAttribute('onkeyup', "Utils2.AVantageTickerSearch()");
+            div.appendChild(dimInput);
         }
     },
+    async AVantageTickerSearch() {
+        try{
+            var input = document.getElementById('tickerInput');
+            var apiurl = categorySchemes.find((obj) => obj['mainAgencyID'] === 'AVANTAGE')['source']
+            apiurl = apiurl.replace('[[function]]','SYMBOL_SEARCH').replace('[[parameters]]',`&keywords=${input.value}`);
+            console.log(apiurl);
+            var data = await Utils.fetchJsonApi(apiurl);
+            console.log(data)
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
 }

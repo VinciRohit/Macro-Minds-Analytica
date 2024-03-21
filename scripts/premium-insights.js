@@ -2,17 +2,17 @@
 DATA_COUNT = 7;
 
 data = {
-  labels: Utils.months({count: DATA_COUNT}),
+  labels: Utils_deprecated.months({count: DATA_COUNT}),
   datasets: [
     {
       label: 'Dataset 1',
-      data: Utils.numbers({count: DATA_COUNT, min: -100, max: 100}),
+      data: Utils_deprecated.numbers({count: DATA_COUNT, min: -100, max: 100}),
       borderColor: Utils.CHART_COLORS.red,
       backgroundColor: Utils.CHART_COLORS.red,
     },
     {
       label: 'Dataset 2',
-      data: Utils.numbers({count: DATA_COUNT, min: -100, max: 100}),
+      data: Utils_deprecated.numbers({count: DATA_COUNT, min: -100, max: 100}),
       borderColor: Utils.CHART_COLORS.blue,
       backgroundColor: Utils.CHART_COLORS.blue,
     }

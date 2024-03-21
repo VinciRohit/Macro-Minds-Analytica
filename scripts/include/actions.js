@@ -65,7 +65,8 @@ const FinancialChartButtonactions = [
     {
         name: 'Add Index',
         async handler(chart) {
-            var api = `${configSettings[environment]['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]`
+            // var api = `${configSettings[environment]['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]`
+            var api = categorySchemes.find((obj) => obj['mainAgencyID'] === 'YFinance')['source']
             var share = document.getElementById('share_historicalData');
             api = api.replace('[[indicator]]',`${share.value}_normalised_5y`);
             const response = await Utils.fetchJsonApi(api);
@@ -115,7 +116,8 @@ const WorldBankDataButtonactions = [
             let data;
 
             if (selectedTopic.textContent === 'Market Indices') {
-                var api = `${configSettings[environment]['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]_normalised_max`
+                // var api = `${configSettings[environment]['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]_normalised_max`
+                var api = categorySchemes.find((obj) => obj['mainAgencyID'] === 'YFinance')['source'] + '_normalised_max'
                 api = api.replace('[[indicator]]',selectedOption.value);
                 const response = await Utils.fetchJsonApi(api);
                 data = Object.values(response['data']).map(entry => ({ 
@@ -177,11 +179,7 @@ function GetWorldBankDataButtonactions() {
     return WorldBankDataButtonactions
 }
 
-function GetFinancialChartButtonactions() {
-    return FinancialChartButtonactions
-}
-
-// World Bank Data Interactivity actions
+// All Data Interactivity actions
 const MacroDataButtonactions = [
     {
         name: 'Add Indicator',

@@ -6,7 +6,8 @@ async function initializeFinancialChart() {
 	const finchart_options = { ...options };
 	// finchart_options.onHover = Utils.verticalLineOnHover;	// Using Cross-Hair instead
 
-	var api = `${configSettings[environment]['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]`
+	// var api = `${configSettings[environment]['python']['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]`
+	var api = categorySchemes.find((obj) => obj['mainAgencyID'] === 'YFinance')['source']
 	api = api.replace('[[indicator]]','SNP500_5y');
 	const response = await Utils.fetchJsonApi(api);
 	const snpdata = Object.values(response['data'])

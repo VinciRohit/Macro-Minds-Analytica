@@ -1,3 +1,5 @@
+let timer;
+
 const scale_x = {
     display: true,
     position: 'bottom', 
@@ -103,8 +105,8 @@ var options = {
         zoom: {
             pan: {
                 enabled: true,
-                mode: 'xy',
-            // modifierKey: 'ctrl',
+                mode: 'x',
+                // modifierKey: 'ctrl',
             },
             zoom: {
                 drag: {
@@ -116,7 +118,7 @@ var options = {
                 pinch: {
                     enabled: true,
                 },
-                mode: 'xy',
+                mode: 'x',
                   // scaleMode: 'y'
             },
         },
@@ -164,7 +166,15 @@ var options = {
                 beforeZoom: () => function(start, end) {                  // called before zoom, return false to prevent zoom
                 return true;
                 },
-                afterZoom: () => function(start, end) {                   // called after zoom
+                afterZoom: (zoomedChart) => function(start, end) {                   // called after zoom
+                    // const {min, max} = zoomedChart.chart.scales.x;
+                    // clearTimeout(timer);
+                    // timer = setTimeout(() => {
+                    //     console.log('Fetched data between ' + start + ' and ' + end);
+                    //     // chart.data.datasets[0].data = fetchData(min, max);
+                    //     // chart.stop(); // make sure animations are not running
+                    //     // chart.update('none');
+                    // }, 500);
                 }
             }
         }
@@ -174,11 +184,50 @@ var options = {
 
 let categorySchemes = [
     {
+        mainAgencyID:'AVANTAGE',
+        id:'AVANTAGE',
+        name:'AVantage',
+        sourcetype: 'api',
+        source: `https://www.alphavantage.co/query?function=[[function]][[parameters]]&apikey=${configSettings[environment]['avantage']['apiKey']}`,
+        structure: null,
+        datatype: 'json',
+        categories: [
+            {
+                id: 'INCOME_STATEMENT',
+                name: 'Income Statement',
+                dataflows: [
+                    {
+                        id: 'annualReports',
+                        name: 'Annual Reports',
+                        attributes: {
+                            hasTicker: true,
+                            parameters_string: '&symbol=[[ticker]]',
+                            parameters: {
+                                ticker: null,
+                            }
+                        }
+                    },
+                    {
+                        id: 'quarterlyReports',
+                        name: 'Quarterly Reports',
+                        attributes: {
+                            hasTicker: true,
+                            parameters_string: '&symbol=[[ticker]]',
+                            parameters: {
+                                ticker: null,
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
         mainAgencyID:'YFinance',
         id:'YFinance',
         name:'YFinance',
         sourcetype: 'api',
-        source: `${configSettings[environment]['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]`,
+        source: `${configSettings[environment]['python']['pythonApiUrl']}/get_yfinance_market_data/[[indicator]]`,
         structure: null,
         datatype: 'json',
         categories: [

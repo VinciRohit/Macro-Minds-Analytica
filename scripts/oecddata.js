@@ -7,7 +7,7 @@ async function initializeMacroChart() {
 	// var api = 'https://api.worldbank.org/v2/country/xd/indicator/BX.KLT.DINV.WD.GD.ZS?format=json';
 
 	var macrochartoptions = { ...options };
-	macrochartoptions.scales.x = scale_x;
+	macrochartoptions.scales.x = { ...scale_x };
 	// macrochartoptions.onHover = Utils.verticalLineOnHover;	// Using Cross-Hair instead
 
 	var container = document.getElementById('AllDataChartContainer');
