@@ -94,7 +94,6 @@ const Utils = {
         return `rgba(${rgbaValues.join(', ')})`;
     },
     DateTime: window && window.luxon && window.luxon.DateTime,
-    
     namedColor: index => {
         // Function to get a predefined color based on index
         // Implement as needed for your use case
@@ -551,6 +550,7 @@ const Utils2 = {
                 option.source = AgencyScheme.source;
                 option.structure = AgencyScheme.structure;
                 option.datatype = AgencyScheme.datatype;
+                option.category = scheme;
                 option.Topic = topic;
                 option.mainAgencyID = AgencyScheme.mainAgencyID;
                 option.dataflowAttributes = indicator.attributes;
@@ -664,6 +664,7 @@ const Utils2 = {
                     let dimSelect = document.createElement('select');
                     dimSelect.classList.add('button4');
                     dimSelect.setAttribute('id', dim.dimId);
+                    dimSelect.setAttribute('name', 'MacroEconomicAnalysisIndicators2-dimensions');
     
                     let dimOption = document.createElement('option');
                     dimOption.setAttribute('value', '');
@@ -688,22 +689,52 @@ const Utils2 = {
     async AVantageDimensions(selectedOption, div) {
         var dataflowAttributes = selectedOption.dataflowAttributes;
         if (dataflowAttributes.hasTicker) {
-            let dimInput = document.createElement('input');
-            dimInput.classList.add('textfield');
-            dimInput.setAttribute('id', 'tickerInput');
-            dimInput.setAttribute('placeholder', 'e.g. Ticker');
-            dimInput.setAttribute('onkeyup', "Utils2.AVantageTickerSearch()");
-            div.appendChild(dimInput);
+            const datalist = document.createElement('datalist');
+            datalist.setAttribute('id', 'avantage-tickerSuggestions');
+            
+            const searchBar = document.createElement('input');
+            searchBar.classList.add('button2');
+            searchBar.setAttribute('id', 'avantage-tickerInput');
+            searchBar.setAttribute('onkeyup', "Utils2.AVantageTickerSearch()");
+            searchBar.setAttribute('autoComplete', 'on');
+            searchBar.setAttribute('list', 'avantage-tickerSuggestions');
+            searchBar.setAttribute('name', 'MacroEconomicAnalysisIndicators2-dimensions');
+
+            searchBar.addEventListener('change', function() {
+                const selectedOption = Array.from(datalist.options).find(option => option.textContent === searchBar.value);
+                const additionalAttribute = selectedOption.getAttribute('parameter');
+                searchBar.setAttribute('parameter', additionalAttribute);
+                dataflowAttributes.parameters['ticker'] = additionalAttribute
+            });
+
+            div.appendChild(datalist);
+            div.appendChild(searchBar);
         }
     },
     async AVantageTickerSearch() {
+        // Get search results
         try{
-            var input = document.getElementById('tickerInput');
+            var input = document.getElementById('avantage-tickerInput');
             var apiurl = categorySchemes.find((obj) => obj['mainAgencyID'] === 'AVANTAGE')['source']
             apiurl = apiurl.replace('[[function]]','SYMBOL_SEARCH').replace('[[parameters]]',`&keywords=${input.value}`);
-            console.log(apiurl);
+            
+            // test
+            apiurl = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesco&apikey=demo';
+            
             var data = await Utils.fetchJsonApi(apiurl);
-            console.log(data)
+            // console.log(data)
+
+            const datalist = document.getElementById('avantage-tickerSuggestions');
+            datalist.innerHTML = ''; // Clear previous results
+
+            // Populate dropdown with filtered results
+            data['bestMatches'].forEach(result => {
+                const option = document.createElement("option");
+                option.textContent = `${result["2. name"]} (${result["1. symbol"]})`;
+                option.setAttribute('parameter', result["1. symbol"]);
+                datalist.appendChild(option);
+            })
+
         } catch (error) {
             console.log(error);
         }

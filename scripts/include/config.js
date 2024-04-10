@@ -195,30 +195,38 @@ let categorySchemes = [
             {
                 id: 'INCOME_STATEMENT',
                 name: 'Income Statement',
-                dataflows: [
+                categories: [
                     {
-                        id: 'annualReports',
-                        name: 'Annual Reports',
-                        attributes: {
-                            hasTicker: true,
-                            parameters_string: '&symbol=[[ticker]]',
-                            parameters: {
-                                ticker: null,
+                        id: 'grossProfit',
+                        name: 'Gross Profit',
+                        dataflows: [
+                            {
+                                id: 'annualReports',
+                                name: 'Gross Profit - Annual',
+                                attributes: {
+                                    filterUrlResponse: ".annualReports.map(x => {return {'x': x.fiscalDateEnding, 'y':x.grossProfit}})",
+                                    hasTicker: true,
+                                    parameters_string: '&symbol=[[ticker]]',
+                                    parameters: {
+                                        ticker: null,
+                                    }
+                                }
+                            },
+                            {
+                                id: 'quarterlyReports',
+                                name: 'Gross Profit - Quarterly',
+                                attributes: {
+                                    filterUrlResponse: ".quarterlyReports.map(x => {return {'x': x.fiscalDateEnding, 'y':x.grossProfit}})",
+                                    hasTicker: true,
+                                    parameters_string: '&symbol=[[ticker]]',
+                                    parameters: {
+                                        ticker: null,
+                                    }
+                                }
                             }
-                        }
-                    },
-                    {
-                        id: 'quarterlyReports',
-                        name: 'Quarterly Reports',
-                        attributes: {
-                            hasTicker: true,
-                            parameters_string: '&symbol=[[ticker]]',
-                            parameters: {
-                                ticker: null,
-                            }
-                        }
+                        ]
                     }
-                ]
+                ],
             }
         ]
     },

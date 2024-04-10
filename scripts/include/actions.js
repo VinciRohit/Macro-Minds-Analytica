@@ -186,9 +186,10 @@ const MacroDataButtonactions = [
         async handler(chart) {
             // var topic = document.getElementById('topics');
             // const selectedTopic = topic.options[topic.selectedIndex];
-            const div = document.getElementById('MacroEconomicAnalysisIndicators2');
-            const selectElements = div.getElementsByTagName('select');
-            const indicatorElement = Array.from(selectElements).find(entry => entry.id === 'indicators2');
+            // const div = document.getElementById('MacroEconomicAnalysisIndicators2');
+            // const indicatorElement = Array.from(selectElements).find(entry => entry.id === 'indicators2');
+            const selectElements = document.getElementsByName('MacroEconomicAnalysisIndicators2-dimensions');
+            const indicatorElement = document.getElementById('indicators2');
 
             const selectedOption = indicatorElement.options[indicatorElement.selectedIndex];
             var label = selectedOption.textContent;
@@ -196,8 +197,15 @@ const MacroDataButtonactions = [
 
             console.log(`selected option Id is ${selectedOption.value}`);
             let data;
-            let dimensions;
             let tag;    // used for global understanding of the data
+            
+            let dimensions = Array.from(selectElements).map(item => {
+                if (item.tagName === 'SELECT') {
+                    return item.options[item.selectedIndex].value;
+                } else if (item.tagName === 'INPUT') {
+                    return item.value;
+                }
+            });
 
             if (selectedOption.mainAgencyID === 'YFinance') {
                 // var filename = `python/data/${indicator.value}_normalised_max.json`;
@@ -216,7 +224,8 @@ const MacroDataButtonactions = [
                 const agencyID = selectedOption.dataflowAttributes.agencyID? selectedOption.dataflowAttributes.agencyID:'all';
                 const indicator = selectedOption.value;
 
-                dimensions = Array.from(selectElements).filter(entry => entry.id != 'indicators2').map(item => item.options[item.selectedIndex].value);
+                // dimensions = Array.from(selectElements).filter(entry => entry.id != 'indicators2').map(item => item.options[item.selectedIndex].value);
+
                 dimensionslabels = Array.from(selectElements)
                     .filter(entry => entry.id != 'indicators2')
                     .filter(entry => entry.id != 'MEASURE')
@@ -224,7 +233,11 @@ const MacroDataButtonactions = [
                     .filter(entry => entry.id != 'METHODOLOGY')
                     .filter(entry => entry.id != 'UNIT_MEASURE')
                     .filter(entry => entry.id != 'ADJUSTMENT')
-                    .map(item => item.options[item.selectedIndex].textContent);
+                    .map(item => {
+                        if (item.tagName === 'SELECT') {
+                            return item.options[item.selectedIndex].textContent;
+                        }
+                    });
 
                 label = label + ' - ' + dimensionslabels.join(' - ');
 
@@ -249,7 +262,26 @@ const MacroDataButtonactions = [
                 // } catch (error) {
                 //     throw error;
                 // }
-            };
+            } else if (selectedOption.mainAgencyID === 'AVANTAGE') {
+                const _function = selectedOption.category.id;
+                api = api.replace('[[function]]', _function);
+
+                var parameters_string = selectedOption.dataflowAttributes.parameters_string
+                var parameters = selectedOption.dataflowAttributes.parameters
+                
+                Object.keys(selectedOption.dataflowAttributes.parameters).forEach(item => {
+                    parameters_string = parameters_string.replace(`[[${item}]]`, parameters[item]);
+                })
+
+                api = api.replace('[[parameters]]', parameters_string);
+                
+                // test
+                api = "https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=IBM&apikey=demo"
+                const response = await Utils.fetchJsonApi(api);
+
+                data = eval(`response${selectedOption.dataflowAttributes.filterUrlResponse}`);
+
+            }
             
             // data = Utils.normalizeArray(data, 'y', minValueMacro, maxValueMacro);
 
