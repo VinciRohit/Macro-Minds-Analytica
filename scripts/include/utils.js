@@ -54,8 +54,16 @@ const Utils_deprecated = {
 const Utils = {
     
     CHART_COLORS: {
-        red: 'rgb(255, 99, 132)',
-        blue: 'rgb(54, 162, 235)',
+        0: 'rgb(255, 99, 132)',   // Red
+        1: 'rgb(54, 162, 235)',   // Blue
+        2: 'rgb(255, 206, 86)',   // Yellow
+        3: 'rgb(75, 192, 192)',   // Green
+        4: 'rgb(153, 102, 255)',  // Purple
+        5: 'rgb(255, 159, 64)',   // Orange
+        6: 'rgb(255, 0, 255)',    // Magenta
+        7: 'rgb(0, 255, 255)',    // Cyan
+        8: 'rgb(128, 128, 128)',  // Gray
+        9: 'rgb(0, 128, 0)',      // Dark Green
     },
     gradientize: (chart, color, opacity) => {
         // Function to make a color gradient
@@ -97,7 +105,7 @@ const Utils = {
     namedColor: index => {
         // Function to get a predefined color based on index
         // Implement as needed for your use case
-        return index % 2 === 0 ? Utils.CHART_COLORS.red : Utils.CHART_COLORS.blue;
+        return Utils.CHART_COLORS[index % 10];
     },
     createButton: ({container, myInteractiveLineChart}) => {
         actions.forEach(action => {
@@ -216,7 +224,7 @@ const Utils = {
         });
         return data
     },
-    async updateChart (data, label, myInteractiveLineChart, yAxisID, tag) {
+    async updateChart (data, label, myInteractiveLineChart, yAxisID, tag, type) {
         myInteractiveLineChart.data.datasets.forEach(dataset => {
             if (dataset.label === label) {
                 throw 'indicator already in chart';
@@ -234,6 +242,7 @@ const Utils = {
         };
 
         if (tag) {dataset.tag = tag}
+        if (type) {dataset.type = type}
 
         if (yAxisID) {
             dataset.yAxisID = yAxisID;
@@ -503,7 +512,7 @@ const Utils2 = {
         });
     },
     filterByTopic2(selectedTopics) {
-        const indicatorsDropdown = document.getElementById('indicators2');
+        const indicatorsDropdown = document.getElementById('AllDataChartIndicators');
         let indicators = indicatorsDropdown.querySelectorAll('option');
         const AgencyScheme = categorySchemes.find(categoryScheme => categoryScheme.mainAgencyID === selectedTopics[0]);
     
@@ -556,6 +565,7 @@ const Utils2 = {
                 option.dataflowAttributes = indicator.attributes;
                 option.value = indicator.id;
                 option.textContent = `${indicator.name}`;
+                option.updatedtextContent = `${indicator.name}`; // incase we want to update textcontent later (e.g. adding ticker name)
                 indicatorsDropdown.appendChild(option);
                 option.style.display = 'block';
                 optionsSet.push(option);
@@ -567,13 +577,13 @@ const Utils2 = {
     
     },
     async getDimensions() {
-        const indicator = document.getElementById('indicators2');
+        const indicator = document.getElementById('AllDataChartIndicators');
         const selectedOption = indicator.options[indicator.selectedIndex];
-        const div = document.getElementById('MacroEconomicAnalysisIndicators2');
+        const div = document.getElementById('AllDataChartIndicatorContainer');
         // let data;
     
         // Remove all previous filters
-        while (div.lastElementChild && (div.lastElementChild.id != 'indicators2')) {
+        while (div.lastElementChild && (div.lastElementChild.id != 'AllDataChartIndicators')) {
             div.removeChild(div.lastElementChild)
         }
     
@@ -664,7 +674,7 @@ const Utils2 = {
                     let dimSelect = document.createElement('select');
                     dimSelect.classList.add('button4');
                     dimSelect.setAttribute('id', dim.dimId);
-                    dimSelect.setAttribute('name', 'MacroEconomicAnalysisIndicators2-dimensions');
+                    dimSelect.setAttribute('name', 'AllDataChartIndicatorContainer-dimensions');
     
                     let dimOption = document.createElement('option');
                     dimOption.setAttribute('value', '');
@@ -698,13 +708,14 @@ const Utils2 = {
             searchBar.setAttribute('onkeyup', "Utils2.AVantageTickerSearch()");
             searchBar.setAttribute('autoComplete', 'on');
             searchBar.setAttribute('list', 'avantage-tickerSuggestions');
-            searchBar.setAttribute('name', 'MacroEconomicAnalysisIndicators2-dimensions');
+            searchBar.setAttribute('name', 'AllDataChartIndicatorContainer-dimensions');
 
             searchBar.addEventListener('change', function() {
-                const selectedOption = Array.from(datalist.options).find(option => option.textContent === searchBar.value);
-                const additionalAttribute = selectedOption.getAttribute('parameter');
+                const selectedDataListOption = Array.from(datalist.options).find(option => option.textContent === searchBar.value);
+                const additionalAttribute = selectedDataListOption.getAttribute('parameter');
                 searchBar.setAttribute('parameter', additionalAttribute);
                 dataflowAttributes.parameters['ticker'] = additionalAttribute
+                selectedOption.updatedtextContent = dataflowAttributes.parameters['ticker'] + ' - ' + selectedOption.textContent;
             });
 
             div.appendChild(datalist);

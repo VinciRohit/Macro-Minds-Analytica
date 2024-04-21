@@ -186,18 +186,19 @@ const MacroDataButtonactions = [
         async handler(chart) {
             // var topic = document.getElementById('topics');
             // const selectedTopic = topic.options[topic.selectedIndex];
-            // const div = document.getElementById('MacroEconomicAnalysisIndicators2');
-            // const indicatorElement = Array.from(selectElements).find(entry => entry.id === 'indicators2');
-            const selectElements = document.getElementsByName('MacroEconomicAnalysisIndicators2-dimensions');
-            const indicatorElement = document.getElementById('indicators2');
+            // const div = document.getElementById('AllDataChartIndicatorContainer');
+            // const indicatorElement = Array.from(selectElements).find(entry => entry.id === 'AllDataChartIndicators');
+            const selectElements = document.getElementsByName('AllDataChartIndicatorContainer-dimensions');
+            const indicatorElement = document.getElementById('AllDataChartIndicators');
 
             const selectedOption = indicatorElement.options[indicatorElement.selectedIndex];
-            var label = selectedOption.textContent;
+            var label = selectedOption.updatedtextContent;
             var api = selectedOption.source;
 
             console.log(`selected option Id is ${selectedOption.value}`);
             let data;
             let tag;    // used for global understanding of the data
+            let type;
             
             let dimensions = Array.from(selectElements).map(item => {
                 if (item.tagName === 'SELECT') {
@@ -224,10 +225,10 @@ const MacroDataButtonactions = [
                 const agencyID = selectedOption.dataflowAttributes.agencyID? selectedOption.dataflowAttributes.agencyID:'all';
                 const indicator = selectedOption.value;
 
-                // dimensions = Array.from(selectElements).filter(entry => entry.id != 'indicators2').map(item => item.options[item.selectedIndex].value);
+                // dimensions = Array.from(selectElements).filter(entry => entry.id != 'AllDataChartIndicators').map(item => item.options[item.selectedIndex].value);
 
                 dimensionslabels = Array.from(selectElements)
-                    .filter(entry => entry.id != 'indicators2')
+                    .filter(entry => entry.id != 'AllDataChartIndicators')
                     .filter(entry => entry.id != 'MEASURE')
                     .filter(entry => entry.id != 'FREQ')
                     .filter(entry => entry.id != 'METHODOLOGY')
@@ -263,7 +264,10 @@ const MacroDataButtonactions = [
                 //     throw error;
                 // }
             } else if (selectedOption.mainAgencyID === 'AVANTAGE') {
-                const _function = selectedOption.category.id;
+                // selectedOption.updatedtextContent = selectedOption.dataflowAttributes.parameters['ticker'] + ' - ' + selectedOption.textContent;
+                // label = selectedOption.updatedtextContent;
+
+                const _function = selectedOption.category.function_name;
                 api = api.replace('[[function]]', _function);
 
                 var parameters_string = selectedOption.dataflowAttributes.parameters_string
@@ -276,24 +280,55 @@ const MacroDataButtonactions = [
                 api = api.replace('[[parameters]]', parameters_string);
                 
                 // test
-                api = "https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=IBM&apikey=demo"
+                api = "https://www.alphavantage.co/query?function=[[function]]&symbol=IBM&apikey=demo".replace('[[function]]', _function);
                 const response = await Utils.fetchJsonApi(api);
 
-                data = eval(`response${selectedOption.dataflowAttributes.filterUrlResponse}`);
+                data = eval(selectedOption.dataflowAttributes.filterUrlResponse);
+                type = selectedOption.dataflowAttributes.chartType? selectedOption.dataflowAttributes.chartType : type;
 
             }
             
             // data = Utils.normalizeArray(data, 'y', minValueMacro, maxValueMacro);
 
-            Utils.updateChart(data, label, chart, `y${chart.data.datasets.length}`, tag);
+            Utils.updateChart(data, label, chart, `y${chart.data.datasets.length}`, tag, type);
         },
     },
     {
         name: 'Remove Selected Indicator',
         async handler(chart) {
-            var indicator = document.getElementById('indicators2');
+            var indicator = document.getElementById('AllDataChartIndicators');
             const selectedOption = indicator.options[indicator.selectedIndex];
-            chart.data.datasets = chart.data.datasets.filter(dataset => dataset.label !== selectedOption.textContent);
+            chart.data.datasets = chart.data.datasets.filter(dataset => dataset.label !== selectedOption.updatedtextContent);
+            chart.update();
+        },
+    },
+    {
+        name: 'Update ChartType for Selected Indicator',
+        async handler(chart) {
+            var indicator = document.getElementById('AllDataChartIndicators');
+            const selectedOption = indicator.options[indicator.selectedIndex];
+            var type = prompt("Please enter chart type:", "line");
+            chart.data.datasets = chart.data.datasets.map(x => {
+                if (x.label === selectedOption.updatedtextContent) {
+                    x.type = type;
+                    return x
+                } else {
+                    return x
+                }
+            })
+            chart.update();
+        },
+    },
+    {
+        name: 'Update ChartType for All',
+        async handler(chart) {
+            var indicator = document.getElementById('AllDataChartIndicators');
+            const selectedOption = indicator.options[indicator.selectedIndex];
+            var type = prompt("Please enter chart type:", "line");
+            chart.data.datasets = chart.data.datasets.map(x => {
+                x.type = type;
+                return x
+            })
             chart.update();
         },
     },
