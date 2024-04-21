@@ -192,6 +192,11 @@ const MacroDataButtonactions = [
             const indicatorElement = document.getElementById('AllDataChartIndicators');
 
             const selectedOption = indicatorElement.options[indicatorElement.selectedIndex];
+
+            if (!selectedOption.canAddIndicator) {
+                throw 'Awaiting Dimensions'
+            }
+
             var label = selectedOption.updatedtextContent;
             var api = selectedOption.source;
 

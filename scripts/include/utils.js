@@ -566,6 +566,7 @@ const Utils2 = {
                 option.value = indicator.id;
                 option.textContent = `${indicator.name}`;
                 option.updatedtextContent = `${indicator.name}`; // incase we want to update textcontent later (e.g. adding ticker name)
+                option.canAddIndicator = false;
                 indicatorsDropdown.appendChild(option);
                 option.style.display = 'block';
                 optionsSet.push(option);
@@ -580,6 +581,8 @@ const Utils2 = {
         const indicator = document.getElementById('AllDataChartIndicators');
         const selectedOption = indicator.options[indicator.selectedIndex];
         const div = document.getElementById('AllDataChartIndicatorContainer');
+
+        selectedOption.canAddIndicator = false;
         // let data;
     
         // Remove all previous filters
@@ -588,11 +591,13 @@ const Utils2 = {
         }
     
         if (selectedOption.mainAgencyID === 'YFinance') {
+            selectedOption.canAddIndicator = true;
         } else if (selectedOption.mainAgencyID === 'OECD') {
             this.OECDDimensions(selectedOption, div);
         } else if (selectedOption.mainAgencyID === 'AVANTAGE') {
             this.AVantageDimensions(selectedOption, div);
         }
+
     },
     async OECDDimensions(selectedOption, div) {
         var datastructure = selectedOption.structure;
@@ -634,17 +639,19 @@ const Utils2 = {
                 const StructureCodeLists = responseDataStructure.documentElement.getElementsByTagName("structure:Codelists")[0];
                 const codeLists = StructureCodeLists.getElementsByTagName("structure:Codelist");
                 for (let codeList of codeLists) {
-                    let dim = dimensionsArray.find(entry => entry.codeListId === codeList.id);
-    
-                    if (dim) {
-                        dim.codes = Array.from(codeList.getElementsByTagName("structure:Code")).map(code => {
-                            let codeNames = Array.from(code.getElementsByTagName("common:Name")).find(child => child.getAttribute? child.getAttribute('xml:lang') === 'en' : false);
-    
-                            return {
-                                codeId: code.getAttribute("id"),
-                                codeName: codeNames? codeNames.textContent : (Array.from(code.getElementsByTagName("common:Name")).length? code.getElementsByTagName("common:Name")[0].textContent : ''),
-                            };
-                        })
+                    let dimsFiltered = dimensionsArray.filter(entry => entry.codeListId === codeList.id);
+                    
+                    if (dimsFiltered.length > 0) {
+                        for (let dim of dimsFiltered) {
+                            dim.codes = Array.from(codeList.getElementsByTagName("structure:Code")).map(code => {
+                                let codeNames = Array.from(code.getElementsByTagName("common:Name")).find(child => child.getAttribute? child.getAttribute('xml:lang') === 'en' : false);
+        
+                                return {
+                                    codeId: code.getAttribute("id"),
+                                    codeName: codeNames? codeNames.textContent : (Array.from(code.getElementsByTagName("common:Name")).length? code.getElementsByTagName("common:Name")[0].textContent : ''),
+                                };
+                            })
+                        }
                     }
     
                 };
@@ -662,9 +669,14 @@ const Utils2 = {
                     let dim = dimensionsArray.find(entry => entry.dimId === constraint.id);
     
                     if (dim) {
-                        let constraintList = Array.from(constraint.getElementsByTagName("common:Value")).map(entry => entry.textContent);
-                        let constraintSet = new Set(constraintList);
-                        dim.codes = dim.codes.filter(item => constraintSet.has(item.codeId));
+                        try {
+                            let constraintList = Array.from(constraint.getElementsByTagName("common:Value")).map(entry => entry.textContent);
+                            let constraintSet = new Set(constraintList);
+                            dim.codes = dim.codes.filter(item => constraintSet.has(item.codeId));
+                        } catch (error) {
+                            console.log(error);
+                        }
+                        
                     }
                 }
     
@@ -681,16 +693,21 @@ const Utils2 = {
                     dimOption.textContent = `Select ${dim.dimName? dim.dimName : dim.dimId}`;
                     dimSelect.appendChild(dimOption);
     
-                    for (let code of dim.codes) {
-                        let dimOption = document.createElement('option');
-                        dimOption.setAttribute('value', `${code.codeId}`);
-                        dimOption.textContent = `${code.codeName}`;
-                        dimSelect.appendChild(dimOption);
+                    try {
+                            for (let code of dim.codes) {
+                            let dimOption = document.createElement('option');
+                            dimOption.setAttribute('value', `${code.codeId}`);
+                            dimOption.textContent = `${code.codeName}`;
+                            dimSelect.appendChild(dimOption);
+                        }
+                    } catch (error) {
+                        console.log(error);
                     }
     
                     div.appendChild(dimSelect);
                 }
                 
+                selectedOption.canAddIndicator = true;
     
             } catch (error) {
                 throw error;
@@ -720,6 +737,9 @@ const Utils2 = {
 
             div.appendChild(datalist);
             div.appendChild(searchBar);
+
+            selectedOption.canAddIndicator = true;
+
         }
     },
     async AVantageTickerSearch() {
