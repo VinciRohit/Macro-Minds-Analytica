@@ -273,6 +273,7 @@ const MacroDataButtonactions = [
                 // label = selectedOption.updatedtextContent;
 
                 const _function = selectedOption.category.function_name;
+                const indicator = selectedOption.value;
                 api = api.replace('[[function]]', _function);
 
                 var parameters_string = selectedOption.dataflowAttributes.parameters_string
@@ -283,6 +284,8 @@ const MacroDataButtonactions = [
                 })
 
                 api = api.replace('[[parameters]]', parameters_string);
+
+                tag = selectedOption.mainAgencyID + '/' + selectedOption.Topic + '/' + indicator + '/' + Object.keys(parameters).map(x => parameters[x]?parameters[x]:'.').join('.');
                 
                 // test
                 api = "https://www.alphavantage.co/query?function=[[function]]&symbol=IBM&apikey=demo".replace('[[function]]', _function);

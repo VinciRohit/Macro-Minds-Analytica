@@ -196,6 +196,7 @@ let categorySchemes = [
             {
                 id: 'INCOME_STATEMENT',
                 name: 'Income Statement',
+                dataflows: [],
                 categories: [
                     {
                         id: 'grossProfit',
@@ -1234,6 +1235,7 @@ let categorySchemes = [
             {
                 id: 'BALANCE_SHEET',
                 name: 'Balance Sheet',
+                dataflows: [],
                 categories: [
                     {
                         id: 'totalAssets',
@@ -2788,6 +2790,7 @@ let categorySchemes = [
             {
                 id: 'CASH_FLOW',
                 name: 'Cash Flow',
+                dataflows: [],
                 categories: [
                     {
                         id: 'operatingCashflow',
