@@ -28,84 +28,188 @@
     <script src="scripts/include/settings.js"></script>
     <script src="scripts/include/config.js"></script>
     <script src="scripts/include/actions.js"></script>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- <meta name="referrer" content="no-referrer-when-downgrade" /> https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid  Key Point: When testing using http and localhost set the Referrer-Policy header in your web app to Referrer-Policy: no-referrer-when-downgrade. -->
+    <script src="scripts/views/tabs.js"></script>
+    
+    <script src="jquery.js"></script> 
 </head>
 <body>
 
+    <!-- Trigger/Open The Modal -->
+    <div style="width:80%; margin:auto; overflow: hidden;">
+        <span id="signInBtn" class="toggle-login-text" style="float:right; padding: 10px;" onclick="DisplaySignInModal()">Login | Sign Up</span>
+
+        <!-- The Sign In Modal -->
+        <div id="signInModal" class="modal" style="place-items: center;">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form action="#">
+                    <div id="title-signin" class="title-login" style="display: block;">Sign In</div>
+                    <div id="title-signup" class="title-login" style="display: none;">Sign Up</div>
+                    <div id="toggle-signin" class="toggle-login" style="display: block;">
+                        <span>Don't have an account?</span>
+                        <span class="toggle-login-text" type="submit" onclick="ToggleSignUp()">Sign Up</span>
+                    </div>
+                    <div id="toggle-signup" class="toggle-login" style="display: none;">
+                        <span>Already have an account?</span>
+                        <span class="toggle-login-text" type="submit" onclick="ToggleSignIn()">Sign In</span>
+                    </div>
+                    <div id="email-text" class="input-box" style="display: block;">
+                        <input type="email" placeholder="Enter Your Email" required>
+                        <div class="underline"></div>
+                    </div>
+                    <div id="password-text" class="input-box" style="display: block;">
+                        <input type="password" placeholder="Enter Your Password" required>
+                        <div class="underline"></div>
+                    </div>
+                    <div id="firstname-text" class="input-box" style="display: none;">
+                        <input type="text" placeholder="First Name">
+                        <div class="underline"></div>
+                    </div>
+                    <div id="lastname-text" class="input-box" style="display: none;">
+                        <input type="text" placeholder="Last Name">
+                        <div class="underline"></div>
+                    </div>
+                    <div id="signin-button" class="input-box signinbutton" style="display: block;">
+                        <input type="submit" value="Continue" onclick="handleEmailCredentialResponse()">
+                    </div>
+                    <div id="signup-button" class="input-box signinbutton" style="display: none;">
+                        <input type="submit" value="Continue" onclick="handleEmailCredentialResponseSignUp()">
+                    </div>
+                    <div id="error-message-loginerror" class="input-box error-message" style="display: none;">
+                        <span class="error-message" style="display: none;"></span>
+                    </div>
+                    <input id="login-form-reset" type="reset" value="Reset" style="display: none;">
+                </form>
+                <div class="option">or Connect with Social Media</div>
+                <div class="google">
+                    <div class="g_id_signin"
+                        data-type="icon"
+                        data-size="large"
+                        data-theme="outline"
+                        data-text="signin_with"
+                        data-shape="circle"
+                        data-logo_alignment="left">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="scripts/credentialmanager.js"></script>
+
+
     <header>
-        <h1>Your Market Insights</h1>
-        <p>Empowering Investors with Historical Data and Macro-Economic Analysis</p>
+        <div style="width:80%; margin:auto; overflow: hidden;">
+            <!-- <button id="signInBtn" class="button2" style="float:right;">Sign In</button> -->
+        </div>
     </header>
 
-    <section class="features">
-        <h2>Features</h2>
+    <!-- <p>Empowering Investors with Historical Data and Macro-Economic Analysis</p> -->
+    <div class="navbar">
+        <h1>Macro Minds Analytica</h1>
+        <a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Home')">Home</a>
+        <a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'About')">About</a>
+        <a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'AnalysisDashboard')">Analysis Dashboard</a>
+    </div>
 
-        <div id="HistoricalDataContainer" style="width:80%; margin:auto;">
-            <h3>Access to High-Quality Historical Data</h3>
-			<canvas id="HistoricalData"></canvas>
-            <script type="text/javascript" src="scripts/financial-chart.js"></script>
-
-			<select class="button2" id="share_historicalData">
-                <option value="SNP500" selected>S&P 500</option>
-				<option value="NIFTY50">Nifty 50</option>
-				<option value="RUSSELL2000">Russell 2000</option>
-			</select>
-        </div>
-
-
-        <div id="MacroEconomicAnalysisContainer" style="width:80%; margin:auto;">
-            <h3>Advanced Tools for Macro-Economic Analysis</h3>
-            <canvas id="MacroEconomicAnalysis"></canvas>
-
-            <div>
-                <select class="button2" id="topics" onchange="filterByTopic()">
-                    <option value="">Select Topic</option>
-                </select>
-
-                <select class="button2" id="indicators">
-                    <option value="">Select Indicator</option>
+    <div id="Home" class="content active">
+        <h1>Welcome to the Home Page</h1>
+        <p>This is the home page content. Welcome to our website!</p>
+    
+        <section class="features">
+            <h2>Features</h2>
+    
+            <div id="HistoricalDataContainer" style="width:80%; margin:auto;">
+                <h3>Access to High-Quality Historical Data</h3>
+                <canvas id="HistoricalData"></canvas>
+                <script type="text/javascript" src="scripts/financial-chart.js"></script>
+    
+                <select class="button2" id="share_historicalData">
+                    <option value="SNP500" selected>S&P 500</option>
+                    <option value="NIFTY50">Nifty 50</option>
+                    <option value="RUSSELL2000">Russell 2000</option>
                 </select>
             </div>
-        </div>
-
-        <script src="scripts/worldbankdata.js"></script>
-        <script src="scripts/worldbankdataindicators.js"></script>
-
-        <div id="AllDataChartContainer" style="width:80%; margin:auto;">
-            <h3>OECD Data</h3>
-            <canvas id="AllDataChart"></canvas>
-
-            <div class="dropdown position-static" id="dynamicDropdown">
-                <button id="SelectData" class="button2 btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select Topic
-                    <span class="caret"></span></button>
+    
+    
+            <div id="MacroEconomicAnalysisContainer" style="width:80%; margin:auto;">
+                <h3>Advanced Tools for Macro-Economic Analysis</h3>
+                <canvas id="MacroEconomicAnalysis"></canvas>
+    
+                <div>
+                    <select class="button2" id="topics" onchange="filterByTopic()">
+                        <option value="">Select Topic</option>
+                    </select>
+    
+                    <select class="button2" id="indicators">
+                        <option value="">Select Indicator</option>
+                    </select>
+                </div>
             </div>
+    
+            <script src="scripts/worldbankdata.js"></script>
+            <script src="scripts/worldbankdataindicators.js"></script>
+    
+            <div id="AllDataChartContainer" style="width:80%; margin:auto;">
+                <h3>OECD Data</h3>
+                <canvas id="AllDataChart"></canvas>
+    
+                <div class="dropdown position-static" id="dynamicDropdown">
+                    <button id="SelectData" class="button2 btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select Topic
+                        <span class="caret"></span></button>
+                </div>
+                
+                <div id="AllDataChartIndicatorContainer" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <select class="button4" id="AllDataChartIndicators" onchange="Utils2.getDimensions()">
+                        <option value="">Select Indicator</option>
+                    </select>
+                </div>
+            </div>
+    
+            <script src="scripts/oecddata.js"></script>
+            <!-- <script src="scripts/oecddataindicators.js"></script> -->
+            <script src="scripts/oecddatacategorisations.js"></script>
+            <!-- <script> $.when(fetchOECDDataIndicators()).then(Utils2.categorySchemesDropdownFilteringAndEventHandling());</script> -->
+    
+    
+            <div id="CorrelationContainer" style="width:80%; margin:auto;">
+                <h3>Global Market Insights and Correlation Studies</h3>
+                <!-- <canvas id="Correlation"></canvas> -->
+                <!-- <script src="scripts/correlation.js"></script> -->
+            </div>
+    
+            <div id="PremiumInsightsContainer" style="width:80%; margin:auto;">
+                <h3>Community Collaboration and Subscription-Based Premium Insights</h3>
+                <canvas id="PremiumInsights"></canvas>
+                <script src="scripts/premium-insights.js"></script>
+            </div>
+    
             
-            <div id="AllDataChartIndicatorContainer" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <select class="button4" id="AllDataChartIndicators" onchange="Utils2.getDimensions()">
-                    <option value="">Select Indicator</option>
-                </select>
-            </div>
-        </div>
+        </section>  
+    </div>
+    
+    <div id="About" class="content">
+        <h1>About Us</h1>
+        <p>This is the about page content. Here you can learn more about our website and our team.</p>
+    </div>
+    
+    <div id="AnalysisDashboard" class="content">
+        <h1>Analysis Dashboard</h1>
+        <p>This is the analysis dashboard content. Here you can see various analyses and data visualizations.</p>
+    </div>
 
-        <script src="scripts/oecddata.js"></script>
-        <!-- <script src="scripts/oecddataindicators.js"></script> -->
-        <script src="scripts/oecddatacategorisations.js"></script>
-        <!-- <script> $.when(fetchOECDDataIndicators()).then(Utils2.categorySchemesDropdownFilteringAndEventHandling());</script> -->
+    <script>
+        // Display the default tab content
+        document.getElementsByClassName('tablinks')[0].click();
+    </script>
 
-
-        <div id="CorrelationContainer" style="width:80%; margin:auto;">
-            <h3>Global Market Insights and Correlation Studies</h3>
-            <!-- <canvas id="Correlation"></canvas> -->
-            <!-- <script src="scripts/correlation.js"></script> -->
-        </div>
-
-        <div id="PremiumInsightsContainer" style="width:80%; margin:auto;">
-            <h3>Community Collaboration and Subscription-Based Premium Insights</h3>
-            <canvas id="PremiumInsights"></canvas>
-            <script src="scripts/premium-insights.js"></script>
-        </div>
-
-		
-    </section>    
+      
 
     <section class="cta">
         <h2>Join Our Community Today!</h2>

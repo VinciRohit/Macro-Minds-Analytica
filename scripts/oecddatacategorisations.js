@@ -27,8 +27,10 @@ async function fetchOECDDataCategorisations() {
 
             for (let topic of topics) {
                 nextScheme = nextScheme.categories.find(categoryScheme => categoryScheme.id === topic);
-                nextScheme.dataflows = nextScheme.dataflows? nextScheme.dataflows : []
-                nextScheme.dataflows.push({id: source, name: name, attributes: {agencyID: agencyID}});
+                if (nextScheme) {
+                    nextScheme.dataflows = nextScheme.dataflows? nextScheme.dataflows : []
+                    nextScheme.dataflows.push({id: source, name: name, attributes: {agencyID: agencyID}});
+                }
             }
         }
 

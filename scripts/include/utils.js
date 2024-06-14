@@ -52,7 +52,6 @@ const Utils_deprecated = {
 }
 
 const Utils = {
-    
     CHART_COLORS: {
         0: 'rgb(255, 99, 132)',   // Red
         1: 'rgb(54, 162, 235)',   // Blue
@@ -736,16 +735,21 @@ const Utils2 = {
             searchBar.classList.add('button2');
             searchBar.setAttribute('id', 'avantage-tickerInput');
             searchBar.setAttribute('onkeyup', "Utils2.AVantageTickerSearch()");
-            searchBar.setAttribute('autoComplete', 'on');
+            searchBar.setAttribute('autoComplete', 'off');
             searchBar.setAttribute('list', 'avantage-tickerSuggestions');
             searchBar.setAttribute('name', 'AllDataChartIndicatorContainer-dimensions');
 
             searchBar.addEventListener('change', function() {
                 const selectedDataListOption = Array.from(datalist.options).find(option => option.textContent === searchBar.value);
                 const additionalAttribute = selectedDataListOption.getAttribute('parameter');
-                searchBar.setAttribute('parameter', additionalAttribute);
-                dataflowAttributes.parameters['ticker'] = additionalAttribute
-                selectedOption.updatedtextContent = dataflowAttributes.parameters['ticker'] + ' - ' + selectedOption.textContent;
+                // searchBar.setAttribute('parameter', additionalAttribute);
+                if (dataflowAttributes.multipleTickers) {
+                    dataflowAttributes.parameters['ticker'] = dataflowAttributes.parameters['ticker'].concat(additionalAttribute);
+                    selectedOption.updatedtextContent = dataflowAttributes.parameters['ticker'].join(',') + ' - ' + selectedOption.textContent;
+                } else {
+                    dataflowAttributes.parameters['ticker'] = additionalAttribute;
+                    selectedOption.updatedtextContent = dataflowAttributes.parameters['ticker'] + ' - ' + selectedOption.textContent;
+                }
             });
 
             div.appendChild(datalist);
@@ -784,4 +788,21 @@ const Utils2 = {
         }
         
     }
+}
+
+const UtlisFormulas = {
+    ArrayAverage(arr) {
+        // Check if the array is empty
+        if (arr.length === 0) {
+            return 0; // Return 0 if the array is empty to avoid division by zero
+        }
+    
+        // Calculate the sum of all elements in the array
+        const sum = arr.reduce((acc, val) => acc + val, 0);
+    
+        // Calculate the average
+        const average = sum / arr.length;
+    
+        return average;
+    },
 }

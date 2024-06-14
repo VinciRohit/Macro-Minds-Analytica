@@ -215,7 +215,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -233,7 +236,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -258,7 +264,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -276,7 +285,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -301,7 +313,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -319,7 +334,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -344,7 +362,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -362,7 +383,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -387,7 +411,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -405,7 +432,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -430,7 +460,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -448,7 +481,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -473,7 +509,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -491,7 +530,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -516,7 +558,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -534,7 +579,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -559,7 +607,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -577,7 +628,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -602,7 +656,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -620,7 +677,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -645,7 +705,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -663,7 +726,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -688,7 +754,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -706,7 +775,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -731,7 +803,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -749,7 +824,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -774,7 +852,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -792,7 +873,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -817,7 +901,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -835,7 +922,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -860,7 +950,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -878,7 +971,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -903,7 +999,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -921,7 +1020,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -946,7 +1048,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -964,7 +1069,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -989,7 +1097,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1007,7 +1118,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1032,7 +1146,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1050,7 +1167,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1075,7 +1195,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1093,7 +1216,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1118,7 +1244,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1136,7 +1265,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1161,7 +1293,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1179,7 +1314,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1204,7 +1342,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1222,7 +1363,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1254,7 +1398,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1272,7 +1419,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1297,7 +1447,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1315,7 +1468,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1340,7 +1496,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1358,7 +1517,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1383,7 +1545,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1401,7 +1566,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1426,7 +1594,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1444,7 +1615,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1469,7 +1643,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1487,7 +1664,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1512,7 +1692,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1530,7 +1713,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1555,7 +1741,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1573,7 +1762,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1598,7 +1790,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1616,7 +1811,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1641,7 +1839,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1659,7 +1860,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1684,7 +1888,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1702,7 +1909,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1727,7 +1937,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1745,7 +1958,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1770,7 +1986,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1788,7 +2007,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1813,7 +2035,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1831,7 +2056,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1856,7 +2084,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1874,7 +2105,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1899,7 +2133,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1917,7 +2154,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1942,7 +2182,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1960,7 +2203,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -1985,7 +2231,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2003,7 +2252,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2028,7 +2280,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2046,7 +2301,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2071,7 +2329,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2089,7 +2350,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2114,7 +2378,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2132,7 +2399,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2157,7 +2427,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2175,7 +2448,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2200,7 +2476,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2218,7 +2497,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2243,7 +2525,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2261,7 +2546,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2286,7 +2574,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2304,7 +2595,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2329,7 +2623,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2347,7 +2644,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2372,7 +2672,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2390,7 +2693,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2415,7 +2721,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2433,7 +2742,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2458,7 +2770,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2476,7 +2791,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2501,7 +2819,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2519,7 +2840,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2544,7 +2868,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2562,7 +2889,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2587,7 +2917,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2605,7 +2938,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2630,7 +2966,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2648,7 +2987,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2673,7 +3015,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2691,7 +3036,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2716,7 +3064,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2734,7 +3085,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2759,7 +3113,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2777,7 +3134,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2809,7 +3169,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2827,7 +3190,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2852,7 +3218,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2870,7 +3239,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2895,7 +3267,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2913,7 +3288,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2938,7 +3316,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2956,7 +3337,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2981,7 +3365,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -2999,7 +3386,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3024,7 +3414,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3042,7 +3435,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3067,7 +3463,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3085,7 +3484,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3110,7 +3512,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3128,7 +3533,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3153,7 +3561,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3171,7 +3582,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3196,7 +3610,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3214,7 +3631,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3239,7 +3659,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3257,7 +3680,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3282,7 +3708,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3300,7 +3729,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3325,7 +3757,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3343,7 +3778,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3368,7 +3806,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3386,7 +3827,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3411,7 +3855,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3429,7 +3876,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3454,7 +3904,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3472,7 +3925,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3497,7 +3953,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3515,7 +3974,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3540,7 +4002,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3558,7 +4023,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3583,7 +4051,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3601,7 +4072,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3626,7 +4100,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3644,7 +4121,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3669,7 +4149,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3687,7 +4170,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3712,7 +4198,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3730,7 +4219,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3755,7 +4247,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3773,7 +4268,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3798,7 +4296,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3816,7 +4317,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3841,7 +4345,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3859,7 +4366,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3884,7 +4394,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3902,7 +4415,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3927,7 +4443,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3945,7 +4464,10 @@ let categorySchemes = [
                                         }
                                     ))`,
                                     hasTicker: true,
-                                    parameters_string: '&symbol=[[ticker]]',
+                                    multipleTickers: false,
+                                    parameters_string: {
+                                        ticker: '&symbol=[[ticker]]',
+                                    },
                                     parameters: {
                                         ticker: null,
                                     }
@@ -3972,12 +4494,56 @@ let categorySchemes = [
                                 }
                             ));`,
                             hasTicker: true,
-                            parameters_string: '&symbol=[[ticker]]',
+                            multipleTickers: false,
+                            parameters_string: {
+                                ticker: '&symbol=[[ticker]]',
+                            },
                             parameters: {
                                 ticker: null,
                             }
                         }
                     },
+                ]
+            },
+            {
+                id: 'NEWS_SENTIMENT',
+                name: 'News Sentiment',
+                function_name: 'NEWS_SENTIMENT',
+                dataflows: [
+                    {
+                        id: 'newssentiment',
+                        name: 'News Sentiment',
+                        attributes: {
+                            chartType: 'line',
+                            filterUrlResponse: `
+                                var returndata = {hasMultipleDatasets: true, datasets: []};
+                                for (let tick of parameters.ticker) {
+                                    returndata.datasets = returndata.datasets.concat({
+                                        updateLabel: \`\${tick} - News Sentiment\`,
+                                        data: response.feed.map(item => {
+                                            return {
+                                                'x': window.luxon.DateTime.fromFormat(item.time_published,"yyyyMMdd'T'HHmmss"),
+                                                'y': UtlisFormulas.ArrayAverage(item.ticker_sentiment.filter(x => x.ticker === tick).map(y => y.ticker_sentiment_score).map(z => parseFloat(z)))
+                                            }
+                                        })
+                                    })
+                                }
+                                returndata;
+                            `,
+                            hasTicker: true,
+                            multipleTickers: true,
+                            hasTopic: true,
+                            multipleTopics: true,
+                            parameters_string: {
+                                ticker: '&tickers=[[ticker]]',
+                                topic: '&topics=[[topic]]',
+                            },
+                            parameters: {
+                                ticker: [],
+                                topic: [],
+                            }
+                        }
+                    }
                 ]
             }
         ]

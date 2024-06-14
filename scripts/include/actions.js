@@ -276,19 +276,28 @@ const MacroDataButtonactions = [
                 const indicator = selectedOption.value;
                 api = api.replace('[[function]]', _function);
 
-                var parameters_string = selectedOption.dataflowAttributes.parameters_string
-                var parameters = selectedOption.dataflowAttributes.parameters
+                var parameters_string = {...selectedOption.dataflowAttributes.parameters_string};
+                var parameters = {...selectedOption.dataflowAttributes.parameters};
                 
-                Object.keys(selectedOption.dataflowAttributes.parameters).forEach(item => {
-                    parameters_string = parameters_string.replace(`[[${item}]]`, parameters[item]);
+                Object.keys(selectedOption.dataflowAttributes.parameters_string).forEach(item => {
+                    if ((item === 'ticker') && selectedOption.dataflowAttributes.multipleTickers) {
+                        parameters_string[item] = (parameters[item].length > 0)? parameters_string[item].replace(`[[${item}]]`, parameters[item].join(',')) : '';
+                    } else if ((item === 'topic') && selectedOption.dataflowAttributes.multipleTopics) {
+                        parameters_string[item] = (parameters[item].length > 0)? parameters_string[item].replace(`[[${item}]]`, parameters[item].join(',')) : '';
+                    } else {
+                        parameters_string[item] = parameters[item]? parameters_string[item].replace(`[[${item}]]`, parameters[item]) : '';
+                    }
                 })
 
-                api = api.replace('[[parameters]]', parameters_string);
+                api = api.replace('[[parameters]]', Object.keys(parameters_string).map(item => parameters_string[item]).join(''));
 
                 tag = selectedOption.mainAgencyID + '/' + selectedOption.Topic + '/' + indicator + '/' + Object.keys(parameters).map(x => parameters[x]?parameters[x]:'.').join('.');
                 
                 // test
                 api = "https://www.alphavantage.co/query?function=[[function]]&symbol=IBM&apikey=demo".replace('[[function]]', _function);
+                // api = "https://www.alphavantage.co/query?function=[[function]]&tickers=AAPL&apikey=demo".replace('[[function]]', _function);
+                parameters.ticker = ['AAPL','META'];
+
                 const response = await Utils.fetchJsonApi(api);
 
                 data = eval(selectedOption.dataflowAttributes.filterUrlResponse);
@@ -297,8 +306,13 @@ const MacroDataButtonactions = [
             }
             
             // data = Utils.normalizeArray(data, 'y', minValueMacro, maxValueMacro);
-
-            Utils.updateChart(data, label, chart, `y${chart.data.datasets.length}`, tag, type);
+            if (data.hasMultipleDatasets) {
+                for (let dataset of data.datasets) {
+                    Utils.updateChart(dataset.data, dataset.updateLabel, chart, `y${chart.data.datasets.length}`, tag, type);
+                }
+            } else {
+                Utils.updateChart(data, label, chart, `y${chart.data.datasets.length}`, tag, type);
+            }
         },
     },
     {
