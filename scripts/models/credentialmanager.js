@@ -116,7 +116,9 @@ function handleEmailCredentialResponseSignUp() {
 
           var modal = document.getElementById("signInModal");
           modal.style.display = "none";
-    }
+         
+          SignIn();
+        }
 }
 
 function handleEmailCredentialResponse() {
@@ -143,6 +145,8 @@ function handleEmailCredentialResponse() {
 
                 var modal = document.getElementById("signInModal");
                 modal.style.display = "none";
+
+                SignIn();
               }
           });
     
@@ -165,6 +169,8 @@ function handleGoogleCredentialResponse(response) {
 
       var modal = document.getElementById("signInModal");
       modal.style.display = "none";
+
+      SignIn();
 }
 
 window.onload = function() {
@@ -178,5 +184,23 @@ window.onload = function() {
     );
     google.accounts.id.prompt();  // Display the One Tap prompt
 };
+
+
+/////////////////////// Sign In / Sign Out
+function SignIn() {
+    var about = document.getElementById("tablinks-about");
+    about.style.display = "none";
+
+    var about = document.getElementById("tablinks-analysis-dashboard");
+    about.style.display = "block";
+}
+
+function SignOut() {
+    var about = document.getElementById("tablinks-about");
+    about.style.display = "block";
+
+    var about = document.getElementById("tablinks-analysis-dashboard");
+    about.style.display = "none";
+}
 
 

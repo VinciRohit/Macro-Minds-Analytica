@@ -37,7 +37,7 @@
 </head>
 <body>
 
-    <!-- Trigger/Open The Modal -->
+    <!-- Sign In -->
     <div style="width:80%; margin:auto; overflow: hidden;">
         <span id="signInBtn" class="toggle-login-text" style="float:right; padding: 10px;" onclick="DisplaySignInModal()">Login | Sign Up</span>
 
@@ -101,21 +101,19 @@
 
         </div>
     </div>
-    <script src="scripts/credentialmanager.js"></script>
+    <script src="scripts/models/credentialmanager.js"></script>
 
 
     <header>
         <div style="width:80%; margin:auto; overflow: hidden;">
-            <!-- <button id="signInBtn" class="button2" style="float:right;">Sign In</button> -->
         </div>
     </header>
 
-    <!-- <p>Empowering Investors with Historical Data and Macro-Economic Analysis</p> -->
     <div class="navbar">
         <h1>Macro Minds Analytica</h1>
-        <a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Home')">Home</a>
-        <a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'About')">About</a>
-        <a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'AnalysisDashboard')">Analysis Dashboard</a>
+        <a id="tablinks-home" href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Home')">Home</a>
+        <a id="tablinks-about" href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'About')">About</a>
+        <a id="tablinks-analysis-dashboard" href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'AnalysisDashboard')" style="display: none;">Analysis Dashboard</a>
     </div>
 
     <div id="Home" class="content active">

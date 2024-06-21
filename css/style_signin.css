@@ -1,0 +1,498 @@
+section {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    list-style: none;
+  border-radius: 20px;
+}
+img {
+    width: 100%
+}
+html,
+body {
+    top: 0!important
+}
+.anim03 {
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+.anim04c {
+    -webkit-transition: all .4s cubic-bezier(.5, .35, .15, 1.4) !important;
+    transition: all .4s cubic-bezier(.5, .35, .15, 1.4) !important;
+}
+*,
+*::before,
+*::after {
+    -webkit-text-rendering: optimizeLegibility;
+    -moz-text-rendering: optimizeLegibility;
+    -ms-text-rendering: optimizeLegibility;
+    -o-text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -ms-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    /* font-smoothing: antialiased; */
+}
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    background: #fff;
+    color: #666;
+}
+body {
+  background-color: black;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+/*-----*/
+
+.loginOrSignupField {
+    width: 400px;
+    height: 500px;
+    padding: 55px 20px 20px 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateY(-50%) translateX(-50%) scale(0);
+    -moz-transform: translateY(-50%) translateX(-50%) scale(0);
+    -ms-transform: translateY(-50%) translateX(-50%) scale(0);
+    -o-transform: translateY(-50%) translateX(-50%) scale(0);
+    transform: translateY(-50%) translateX(-50%) scale(0);
+    background: #fff;
+    box-shadow: 0 0 0 2px #3498DB;
+    /* border-radius:3px;
+    overflow:hidden; */
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 2px;
+    opacity: 0;
+}
+/*-----*/
+
+.switchButtonField {
+    width: 100%;
+    height: 15px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+}
+.switchButtonOuter {
+    width: 30px;
+    height: 100%;
+    background: #3498DB;
+    margin: auto;
+    position: relative;
+    /* border-radius:3px; */
+    box-shadow: 0 0 0 2px #3498DB;
+    cursor: pointer;
+}
+.switchButtonInner {
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* //border-radius:3px; */
+
+}
+.switchButtonOuter:before,
+.switchButtonOuter:after {
+    height: 100%;
+    padding: 0 20px;
+    position: absolute;
+    top: 0;
+    white-space: nowrap;
+    line-height: 15px;
+    background: transparent;
+    color: #ddd;
+    cursor: pointer;
+}
+.switchButtonOuter:before {
+    content: "Join";
+    right: 100%;
+    color: #3498DB;
+}
+.switchButtonOuter:after {
+    content: "Sign up";
+    left: 100%;
+}
+/*-----*/
+
+.emailForm {
+    display: block;
+    height: 200px;
+    position: relative;
+    margin: auto;
+    padding: 20px 40px;
+    position: relative;
+    box-shadow: 0 42px 0 -40px #ddd;
+}
+.emailForm:after {
+    content: "or";
+    height: 15px;
+    margin: auto;
+    position: relative;
+    bottom: -3px;
+    padding: 0 10px;
+    line-height: 15px;
+    letter-spacing: 4px;
+    background: #fff;
+    color: #ddd;
+}
+#email,
+#password,
+#submit {
+    border: 0;
+    width: 300px;
+    height: 30px;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    position: relative;
+    white-space: nowrap;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-align: center;
+    outline: none !important;
+    /* //border-radius:3px; */
+    box-shadow: 0 0 0 1px #3498DB;
+}
+#email,
+#password {
+    background: #fff;
+    color: #3498DB;
+}
+#email:hover,
+#password:hover,
+#email:focus,
+#password:focus {
+    box-shadow: 0 0 0 1px #ff726b;
+    color: #ff726b;
+}
+#submit {
+    width: 320px;
+    height: 50px;
+    background: #3498DB;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+#submit:hover {
+    background: #ff726b !important;
+    box-shadow: 0 0 0 1px #ff726b !important;
+}
+::-webkit-input-placeholder {
+    text-transform: uppercase;
+    color: #3498DB;
+}
+:-moz-placeholder {
+    text-transform: uppercase;
+    color: #3498DB;
+}
+::-moz-placeholder {
+    text-transform: uppercase;
+    color: #3498DB;
+}
+:-ms-input-placeholder {
+    text-transform: uppercase;
+    color: #3498DB;
+}
+#email:hover::-webkit-input-placeholder,
+#password:hover::-webkit-input-placeholder,
+#email:focus::-webkit-input-placeholder,
+#password:focus::-webkit-input-placeholder {
+    color: #ff726b;
+}
+#email:hover:-moz-placeholder,
+#password:hover:-moz-placeholder,
+#email:focus:-moz-placeholder,
+#password:focus:-moz-placeholder {
+    color: #ff726b;
+}
+#email:hover::-moz-placeholder,
+#password:hover::-moz-placeholder,
+#email:focus::-moz-placeholder,
+#password:focus::-moz-placeholder {
+    color: #ff726b;
+}
+#email:hover:-ms-input-placeholder,
+#password:hover:-ms-input-placeholder,
+#email:focus:-ms-input-placeholder,
+#password:focus:-ms-input-placeholder {
+    color: #ff726b;
+}
+#rememberMeField {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 58px;
+    bottom: 117px;
+    cursor: pointer;
+    display: block;
+}
+#rememberMe {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: -1px;
+    right: -2px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: none;
+    visibility: hidden;
+    -webkit-appearance: none;
+}
+label {
+    position: relative;
+}
+label span {
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+label span:after {
+    content: "?";
+    position: absolute;
+    right: 0;
+    padding: 0 5px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 15px;
+    white-space: nowrap;
+    background: #3498DB;
+    color: #fff;
+    display: block;
+}
+label span:hover:after {
+    content: "remember ?";
+}
+#rememberMe:checked + span:after {
+    content: "ok";
+    background: #2ecc71;
+}
+/*-----*/
+
+.socialButton {
+    width: 300px;
+    height: 30px;
+    display: block;
+    position: relative;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+    line-height: 30px;
+    outline: none !important;
+    /* //border-radius:3px; */
+
+}
+.socialButton:first-of-type {
+    margin-top: 30px;
+}
+.socialButton.facebook {
+    color: #3b5998;
+    box-shadow: 0 0 0 1px #3b5998;
+}
+.socialButton.twitter {
+    color: #00a0d1;
+    box-shadow: 0 0 0 1px #00a0d1;
+}
+.socialButton.googleplus {
+    color: #db4a39;
+    box-shadow: 0 0 0 1px #db4a39;
+}
+.socialButton.facebook:hover {
+    background: #3b5998;
+    color: #fff;
+}
+.socialButton.twitter:hover {
+    background: #00a0d1;
+    color: #fff;
+}
+.socialButton.googleplus:hover {
+    background: #db4a39;
+    color: #fff;
+}
+/*--process cssses--*/
+
+.loginOrSignupField.signup_ON {
+    box-shadow: 0 0 0 2px #2ecc71;
+}
+.signup_ON .switchButtonOuter {
+    box-shadow: 0 0 0 2px #2ecc71;
+    /* background: #2ecc1; */
+}
+.signup_ON .switchButtonInner {
+    left: 50%;
+}
+.signup_ON .switchButtonOuter:before {
+    color: #ddd;
+}
+.signup_ON .switchButtonOuter:after {
+    color: #2ecc71;
+}
+.signup_ON #email,
+.signup_ON #password,
+.signup_ON #submit {
+    box-shadow: 0 0 0 1px #2ecc71;
+}
+.signup_ON #email,
+.signup_ON #password {
+    background: #fff;
+    color: #2ecc71;
+}
+.signup_ON #email:hover,
+.signup_ON #password:hover,
+.signup_ON #email:focus,
+.signup_ON #password:focus,
+.inputWarn {
+    box-shadow: 0 0 0 1px #ff726b;
+    color: #ff726b;
+}
+.signup_ON #submit {
+    background: #2ecc71;
+}
+.signup_ON ::-webkit-input-placeholder {
+    color: #2ecc71;
+}
+.signup_ON :-moz-placeholder {
+    color: #2ecc71;
+}
+.signup_ON ::-moz-placeholder {
+    color: #2ecc71;
+}
+.signup_ON :-ms-input-placeholder {
+    color: #2ecc71;
+}
+/*--usable place end--*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mode01_ON .loginOrSignupField,
+.mode01_ON .switchButtonOuter,
+.mode01_ON .switchButtonInner,
+.mode01_ON .input,
+.mode01_ON label span,
+.mode01_ON label span:after,
+.mode01_ON #submit,
+.mode01_ON .socialButton {
+    border-radius: 3px;
+}
+.mode02_ON .switchButtonOuter,
+.mode02_ON .switchButtonInner,
+.mode02_ON .input,
+.mode02_ON label span,
+.mode02_ON label span:after,
+.mode02_ON #submit,
+.mode02_ON .socialButton {
+    border-radius: 100px;
+}
+.mode02_ON .loginOrSignupField {
+    box-shadow: 0 0 0 0 #3498DB;
+}
+.mode01_ON .loginOrSignupField {
+    box-shadow: 0 0 0 1px #3498DB;
+}
+.mode01_ON .loginOrSignupField.signup_ON {
+    box-shadow: 0 0 0 1px #2ecc71;
+}
+.navigations {
+    width: 70px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: -100px;
+    color: #bbb;
+}
+.navigations li {
+    text-align: left;
+    margin-bottom: 10px;
+}
+.navigations span {
+    padding: 0 5px;
+    position: relative;
+    line-height: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.navigations span:hover,
+.mode01_ON .normal:hover,
+.mode02_ON .normal:hover {
+    color: #3498DB;
+}
+.normal {
+    background: #2ecc71;
+    color: #fff;
+}
+.mode01_ON .normal,
+.mode02_ON .normal {
+    background: #fff;
+    color: #bbb;
+}
+.mode01_ON .mode01,
+.mode02_ON .mode02 {
+    background: #2ecc71;
+    color: #fff;
+}
+span.normal:hover,
+.mode01_ON .mode01:hover,
+.mode02_ON .mode02:hover {
+    color: #fff;
+}
+.designer {
+    margin-top: 20px;
+}
+.navigations a {
+    width: 30px;
+    height: 30px;
+    display: block;
+    position: relative;
+    border-radius: 100%;
+    color: #bbb;
+}
+.designer a:after {
+    content: "visit";
+    position: absolute;
+    top: 0;
+    left: 35px;
+    line-height: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+.designer a:hover:after {
+    color: #2ecc71;
+}
+.navigations img {
+    display: block;
+    border-radius: 100%;
+}
